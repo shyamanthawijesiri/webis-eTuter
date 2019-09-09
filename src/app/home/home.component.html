@@ -1,0 +1,85 @@
+
+  <mdb-carousel class="carousel slide carousel-fade" [type]="'carousel-thumbnails'" [animation]="'fade'">
+      <mdb-carousel-item>
+        <img class="d-block w-100" src="https://media.gettyimages.com/photos/digital-human-brain-covered-with-networks-picture-id870184586?s=2048x2048" alt="First slide">
+      </mdb-carousel-item>
+      <mdb-carousel-item>
+        <img class="d-block w-100" src="https://media.gettyimages.com/photos/top-view-of-computer-programmer-sitting-at-the-desk-picture-id673947226?s=2048x2048" alt="Second slide">
+      </mdb-carousel-item>
+      <mdb-carousel-item>
+        <img class="d-block w-100" src="https://media.gettyimages.com/photos/laboratory-picture-id629942998?s=2048x2048" alt="Third slide">
+      </mdb-carousel-item>
+    </mdb-carousel>
+
+
+<div style="background-color:rgba(192, 192, 192, 0.596); padding-top: 1px;">
+     <div class="text-center">
+       <h3 class="course-carousel-title text-center">Upcomming Courses</h3>
+     </div>
+    <hr >
+  <div class= "course-carousel">
+
+    <mdb-carousel [isControls]="false" class="carousel-multi-item multi-animation"
+    [animation]="'slide'" >
+    <mdb-carousel-item *ngFor="let item of slides; let i = index">
+      <div class="col-md-3" [ngClass]="{'d-none d-md-block': cardIndex !== 0}" *ngFor="let card of item; let cardIndex = index">
+        <mdb-card class="my-1" style="width: 300px; height: 300px;"  >
+          <img [src]="card.url" alt="Card image cap" style="height: 150px; border: none;" >
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4>{{card.name}}</h4>
+            </mdb-card-title>
+            <p>{{card.description | shorten}}</p>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </mdb-carousel-item>
+  </mdb-carousel>
+  </div>
+</div>
+<hr>
+<!-- -------------------top rate course----------------------------------------------- -->
+<div class="top-rate-course">
+    <div class="text-center">
+        <h3 class="course-carousel-title text-center">Top Rated Courses</h3>
+      </div>
+      <hr>
+  <div class="row" >
+    <div class="col-md-2" *ngFor="let course of topCourse">
+      <!--Card-->
+      <mdb-card cascade="true" wider="true" style="height: 300px;margin-top: 50px;">
+
+        <!--Card image-->
+        <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+          <img [src]="course.url" style="width: 100%;height:150px;border:none">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--/Card image-->
+        <mdb-card-body cascade="true">
+          <!--Card content-->
+          <!--Title-->
+          <h4 class="card-title">
+            <strong>{{course.name}}</strong>
+          </h4>
+
+          <mdb-card-text>
+           <p>{{course.description | shorten}}
+          </mdb-card-text>
+
+
+
+        </mdb-card-body>
+        <!--/.Card content-->
+
+      </mdb-card>
+      <!--/.Card-->
+    </div>
+
+
+
+  </div>
+</div>
+<hr>
+<app-footer></app-footer>

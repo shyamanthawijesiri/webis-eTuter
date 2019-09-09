@@ -1,16 +1,53 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { DisplaycoursesComponent } from './displaycourses/displaycourses.component';
+import { DurationPipe } from './pipes/duration.pipe';
+import { SkillLevelPipe } from './pipes/skill-level.pipe';
+import { TypePipe } from './pipes/type.pipe';
+import { ContentproviderComponent } from './contentprovider/contentprovider.component';
 
+
+export function tokenGetter() {
+  return localStorage.getItem('id_token');
+}
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    FooterComponent,
+    ShortenPipe,
+    DisplaycoursesComponent,
+    DurationPipe,
+    SkillLevelPipe,
+    TypePipe,
+    ContentproviderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      }
+    }),
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
