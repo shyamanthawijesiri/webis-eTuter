@@ -5,6 +5,17 @@ import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatAutocompleteModule,
+  MatSelectModule,
+  MatIconModule
+ } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +28,9 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { SkillLevelPipe } from './pipes/skill-level.pipe';
 import { TypePipe } from './pipes/type.pipe';
 import { ContentproviderComponent } from './contentprovider/contentprovider.component';
+import { AddcourseComponent } from './contentprovider/addcourse/addcourse.component';
+import { SubcatergoryPipe } from './pipes/subcatergory.pipe';
+import { MycourseComponent } from './contentprovider/mycourse/mycourse.component';
 
 
 export function tokenGetter() {
@@ -33,7 +47,10 @@ export function tokenGetter() {
     DurationPipe,
     SkillLevelPipe,
     TypePipe,
-    ContentproviderComponent
+    ContentproviderComponent,
+    AddcourseComponent,
+    SubcatergoryPipe,
+    MycourseComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +58,16 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
     BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
