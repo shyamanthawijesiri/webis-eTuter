@@ -31,6 +31,7 @@ import { ContentproviderComponent } from './contentprovider/contentprovider.comp
 import { AddcourseComponent } from './contentprovider/addcourse/addcourse.component';
 import { SubcatergoryPipe } from './pipes/subcatergory.pipe';
 import { MycourseComponent } from './contentprovider/mycourse/mycourse.component';
+import { CourseContentComponent } from './displaycourses/course-content/course-content.component';
 
 
 export function tokenGetter() {
@@ -50,7 +51,8 @@ export function tokenGetter() {
     ContentproviderComponent,
     AddcourseComponent,
     SubcatergoryPipe,
-    MycourseComponent
+    MycourseComponent,
+    CourseContentComponent
   ],
   imports: [
     BrowserModule,

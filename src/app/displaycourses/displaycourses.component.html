@@ -49,9 +49,10 @@
                 <div class="view rgba-white-slight waves-light" mdbWavesEffect>
                   <!-- Card img -->
                   <img src="{{course.url}}" alt="Card image cap" >
-                  <a>
+                  <a [routerLink]="['/displaycourses','course-content',course._id]">
                     <div class="mask"></div>
                   </a>
+
                 </div>
                 <!--Card content-->
                 <mdb-card-body>
@@ -84,7 +85,7 @@
                   <div class="view rgba-white-slight waves-light" mdbWavesEffect>
                     <!-- Card img -->
                     <img src="{{course.url}}" alt="Card image cap" >
-                    <a>
+                    <a [routerLink]="['/displaycourses','course-content',course._id]" routerLinkActive="router-link-active" >
                       <div class="mask"></div>
                     </a>
                   </div>

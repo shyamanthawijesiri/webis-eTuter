@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DisplaycoursesComponent } from './displaycourses/displaycourses.component';
 import { ContentproviderComponent } from './contentprovider/contentprovider.component';
+import { CourseContentComponent } from './displaycourses/course-content/course-content.component';
 
 
 const routes: Routes = [
@@ -11,8 +12,10 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'displaycourses', component: DisplaycoursesComponent},
   {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},
+  {path: 'displaycourses/course-content/:id', component: CourseContentComponent},
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
   {path: 'contentprovider', component: ContentproviderComponent},
+
 
 ];
 

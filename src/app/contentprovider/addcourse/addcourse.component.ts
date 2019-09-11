@@ -105,7 +105,16 @@ export class AddcourseComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.contentForm.value);
+
+    this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
+      if(res.state){
+        console.log('success');
+      }else{
+        console.log('flase');
+
+      }
+    })
+
   }
 
 }
