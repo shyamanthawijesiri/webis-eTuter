@@ -1,14 +1,48 @@
-<div class="row" style="margin-top: 60px;">
-  <div class="col-2">
-      <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(54).jpg" class=" z-depth-5" alt="1" >
-  </div>
-  <div class="col-10">
+<div class="row" style="margin-top: 70px;">
+
+
+
+  <div class="col-11" style="margin: auto; position: relative;">
     <div class="content">
       <div class="inner-content">
-        <h1 class=" text-center" >   Title is very long and clear</h1>
+        <h1 class=" text-center" >   {{course.name}}</h1>
         <hr style="background-color: white">
+        <p id="sub-name" class="animated bounce infinite">{{course.subCatergory | uppercase}}</p>
+        <p></p>
+        <p>{{course.description}}</p>
+        <p>{{course.author}}</p>
       </div>
+    </div>
+    <div style="position: absolute; bottom: -120px;  right: 70px;"  >
+
+      <img src="{{course.url}}" class=" z-depth-5" alt="1"   >
     </div>
 
   </div>
 </div>
+<hr>
+<h1 class="text-center" style="color: black">Topics</h1>
+<ul type="none" style="width: 80%; margin: auto; " class="grey lighten-2">
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+  <li>Topic 1</li>
+  <hr>
+</ul>

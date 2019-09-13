@@ -92,7 +92,7 @@ giveRate(id: string, rate){
 
    return this.http.get('http://localhost:3000/subCatergory/display/' + catergory);
 
-   }
+}
 
    courseUpdate = new EventEmitter<string>( )
 
