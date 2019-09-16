@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { MatInputModule,
   MatCardModule,
   MatButtonModule,
@@ -32,6 +33,8 @@ import { AddcourseComponent } from './contentprovider/addcourse/addcourse.compon
 import { SubcatergoryPipe } from './pipes/subcatergory.pipe';
 import { MycourseComponent } from './contentprovider/mycourse/mycourse.component';
 import { CourseContentComponent } from './displaycourses/course-content/course-content.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddcatergoryComponent } from './admin/addcatergory/addcatergory.component';
 
 
 export function tokenGetter() {
@@ -52,7 +55,9 @@ export function tokenGetter() {
     AddcourseComponent,
     SubcatergoryPipe,
     MycourseComponent,
-    CourseContentComponent
+    CourseContentComponent,
+    AdminComponent,
+    AddcatergoryComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,8 @@ export function tokenGetter() {
         tokenGetter
       }
     }),
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    NgFlashMessagesModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@
       <div class="inner-content">
         <h1 class=" text-center" >   {{course.name}}</h1>
         <hr style="background-color: white">
-        <p id="sub-name" class="animated bounce infinite">{{course.subCatergory | uppercase}}</p>
+        <!-- <p id="sub-name" class="animated bounce infinite">{{course.subCatergory | uppercase}}</p> -->
         <p></p>
         <p>{{course.description}}</p>
         <p>{{course.author}}</p>
@@ -15,14 +15,15 @@
     </div>
     <div style="position: absolute; bottom: -120px;  right: 70px;"  >
 
-      <img src="{{course.url}}" class=" z-depth-5" alt="1"   >
+      <img src="{{course.url}}" class=" z-depth-5" alt="1"   ><br>
+      <button mdbBtn type="button" gradient="blue" rounded="true"  block="true" mdbWavesEffect style="margin-top: 5px;">Enroll</button>
     </div>
 
   </div>
 </div>
 <hr>
 <h1 class="text-center" style="color: black">Topics</h1>
-<ul type="none" style="width: 80%; margin: auto; " class="grey lighten-2">
+<ul type="none"  class=" topic">
   <li>Topic 1</li>
   <hr>
   <li>Topic 1</li>
@@ -46,3 +47,5 @@
   <li>Topic 1</li>
   <hr>
 </ul>
+<hr>
+<app-footer></app-footer>

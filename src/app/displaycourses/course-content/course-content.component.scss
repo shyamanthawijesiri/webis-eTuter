@@ -2,7 +2,7 @@
   height:400px;
   //background-color: rgb(122, 117, 98);
   padding-top: 10px;
-  background-image: linear-gradient(to right, rgb(156, 156, 156) , rgb(173, 222, 255));
+  background-image: linear-gradient(to right, rgb(110, 110, 110) , rgb(68, 59, 53));
 
 }
 
@@ -12,6 +12,7 @@
   width: 98%;
   margin: auto;
   border: solid white 3px;
+  color: white;
 }
 
 h1{
@@ -38,4 +39,18 @@ img{
   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 3px;
 
+}
+
+.topic{
+  width: 80%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: auto;
+
+  border-radius: 10px;
+  background-color: rgb(110, 110, 110);
+  color:white
+}
+hr{
+  background-color: white;
 }
