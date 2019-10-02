@@ -1,0 +1,31 @@
+
+        <div class="row" >
+            <div class="col-md-3" *ngFor="let course of denyCourse" >
+             <!-- Card -->
+              <mdb-card >
+                  <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                    <!-- Card img -->
+                    <img src="{{course.url}}" alt="Card image cap" >
+                    <a [routerLink]="['/displaycourses','course-content',course._id]">
+                      <div class="mask"></div>
+                    </a>
+  
+                  </div>
+                  <!--Card content-->
+                  <mdb-card-body>
+                    <!--Title-->
+                    <mdb-card-title>
+                      <h4>{{course.name}}</h4>
+                    </mdb-card-title>
+                    <P>Author: {{course.author}}</P>
+                    <!--Text-->
+                    <!-- <mdb-card-text>
+                     {{course.description | shorten}}
+                    </mdb-card-text> -->
+  
+                    <span class="btn btn-outline-primary" (click)="givePermission(course._id)">Accept </span>
+                  </mdb-card-body>
+                </mdb-card>
+                <!-- Card -->
+            </div>
+          </div>

@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
+  size: number;
   constructor() { }
 
   ngOnInit() {
   }
 
+  receiveSize($event) {
+    this.size = $event;
+
+  }
 }

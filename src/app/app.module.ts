@@ -35,6 +35,7 @@ import { MycourseComponent } from './contentprovider/mycourse/mycourse.component
 import { CourseContentComponent } from './displaycourses/course-content/course-content.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddcatergoryComponent } from './admin/addcatergory/addcatergory.component';
+import { RecentAddedCourseComponent } from './admin/recent-added-course/recent-added-course.component';
 
 
 export function tokenGetter() {
@@ -57,7 +58,8 @@ export function tokenGetter() {
     MycourseComponent,
     CourseContentComponent,
     AdminComponent,
-    AddcatergoryComponent
+    AddcatergoryComponent,
+    RecentAddedCourseComponent
   ],
   imports: [
     BrowserModule,
