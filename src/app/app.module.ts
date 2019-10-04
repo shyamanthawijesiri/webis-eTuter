@@ -17,6 +17,8 @@ import { MatInputModule,
   MatSelectModule,
   MatIconModule
  } from '@angular/material';
+import { SocialLoginModule, AuthServiceConfig, LoginOpt } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +43,23 @@ import { RecentAddedCourseComponent } from './admin/recent-added-course/recent-a
 export function tokenGetter() {
   return localStorage.getItem('id_token');
 }
+
+// google login
+export function provideConfig() {
+  return config;
+}
+
+const googleLoginOptions: LoginOpt = {
+  scope: 'profile email https://www.googleapis.com/auth/youtube.force-ssl'
+};
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("46660554208-qdtpdimir6hni2le5e8bkpdqff7dksei.apps.googleusercontent.com",googleLoginOptions)
+  }
+]);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +97,7 @@ export function tokenGetter() {
     MatSelectModule,
     MatIconModule,
     BrowserAnimationsModule,
+    SocialLoginModule,
     JwtModule.forRoot({
       config: {
         tokenGetter
@@ -86,7 +106,12 @@ export function tokenGetter() {
     MDBBootstrapModule.forRoot(),
     NgFlashMessagesModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
