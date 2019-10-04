@@ -3,7 +3,9 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 import { SubcatergoryService } from 'src/app/services/subcatergory.service';
 import { CatergoryService } from 'src/app/services/catergory.service';
 import { CourseService } from 'src/app/services/course.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from "angularx-social-login";
+import {  GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
   selector: 'app-addcourse',
@@ -15,20 +17,31 @@ export class AddcourseComponent implements OnInit {
   loadedSubcatergory: any;
   catergory = '';
   fileName = 'Choose File';
+  apiKey = 'AIzaSyARlqyYi6ockihl0Qi5MTYO3qjQVwmpfsI';
 
     contentForm: FormGroup;
 
-    user: any;
-    loggedIn = false;
+  user: any;
+  loggedIn = false;
+
   constructor(private fb: FormBuilder,
               private subCatergoryService: SubcatergoryService,
               private catergoryService: CatergoryService,
               private courseService: CourseService,
-              private http: HttpClient)
+              private http: HttpClient,
+              private authService: AuthService)
               { }
 
   ngOnInit() {
 
+    // google login
+
+    this.authService.authState.subscribe((user) => {
+      console.log(user);
+     // localStorage.setItem('token',user.authToken);
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
 
     this.subCatergoryService.getSubcatergory().subscribe(res =>{
       this.loadedSubcatergory = res;
@@ -116,5 +129,31 @@ export class AddcourseComponent implements OnInit {
     })
 
   }
+
+  // google login
+
+  signInWithGoogle(): void {
+    console.log('signin');
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
+
+  upload(files) {
+    let headers = {
+      headers: new HttpHeaders()
+        .set('authorization', 'Bearer ' + localStorage.getItem('token'))
+    };
+    let formData: FormData = new FormData();
+    formData.append('file', files[0]);
+    const url = 'https://www.googleapis.com/upload/youtube/v3/videos?key=' + this.apiKey + '&part=contentDetails,status';
+    this.http.post(url, formData, headers).subscribe(res => {
+      console.log(res);
+      console.log(res['id']);
+    });
+  }
+
 
 }
