@@ -104,29 +104,38 @@ export class AddcourseComponent implements OnInit {
     })
     );
     // ((this.topic.controls[0] as FormGroup).get('videos') as FormArray).push(new FormControl('HELLO',Validators.required));
-    console.log(this.contentForm.value);
+
   }
   onDelete(i: number) {
     (this.contentForm.get('topics') as FormArray).removeAt(i);
 
   }
-  onDeleteFile(i: number){
-    (this.topic.at(i).get('files') as FormArray).removeAt(i);
+  onDeleteFile(i: number, k:number){
+    (this.topic.at(i).get('files') as FormArray).removeAt(k);
   }
-  onDeleteVideo(i: number){
-    (this.topic.at(i).get('videos') as FormArray).removeAt(i);
+  onDeleteVideo(i: number, k: number){
+    (this.topic.at(i).get('videos') as FormArray).removeAt(k);
+    console.log(k);
   }
+
+  // uploadVideo(i:number, k: number){
+  //   console.log(i);
+  //   (this.topic.at(i).get('videos') as FormArray).at(k).setValue(['d1234']);
+
+
+  // }
 
   onSubmit(){
 
-    this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
-      if(res.state){
-        console.log('success');
-      }else{
-        console.log('flase');
+    // this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
+    //   if(res.state){
+    //     console.log('success');
+    //   }else{
+    //     console.log('flase');
 
-      }
-    })
+    //   }
+    // })
+    console.log(this.contentForm.value);
 
   }
 
@@ -141,7 +150,7 @@ export class AddcourseComponent implements OnInit {
     this.authService.signOut();
   }
 
-  upload(files) {
+  uploadVideo(files, i: number, k: number) {
     let headers = {
       headers: new HttpHeaders()
         .set('authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -152,6 +161,7 @@ export class AddcourseComponent implements OnInit {
     this.http.post(url, formData, headers).subscribe(res => {
       console.log(res);
       console.log(res['id']);
+      (this.topic.at(i).get('videos') as FormArray).at(k).setValue([res['id']]);
     });
   }
 
