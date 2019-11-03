@@ -72,6 +72,7 @@ export class AddcatergoryComponent implements OnInit {
 
         console.log('successfully add subcatergory');
         this.onFlash('Sub-Catergory Added Succefully', 'success');
+        window.location.reload();
       } else {
         console.log('failed');
         this.onFlash('Adding Failed', 'danger');
@@ -87,6 +88,7 @@ export class AddcatergoryComponent implements OnInit {
       if (res.state) {
         console.log('delete Ok');
         this.onFlash('Successfully Delete', 'success');
+        window.location.reload();
       } else {
         console.log('delete failed');
         this.onFlash('Delete Failed', 'danger');
@@ -100,6 +102,7 @@ export class AddcatergoryComponent implements OnInit {
       if (res.state) {
         console.log('delete Ok');
         this.onFlash('Successfully Delete', 'success');
+        window.location.reload();
       } else {
         console.log('delete failed');
         this.onFlash('Delete Failed', 'danger');
@@ -116,6 +119,7 @@ export class AddcatergoryComponent implements OnInit {
       if (res.state) {
         console.log('update ok');
         this.onFlash('Successfully Update Catergory Name', 'success');
+        window.location.reload();
       } else {
         console.log('update failed');
         this.onFlash('Update Failed', 'danger');

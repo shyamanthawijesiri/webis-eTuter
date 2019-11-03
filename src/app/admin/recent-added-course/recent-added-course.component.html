@@ -9,7 +9,7 @@
                     <a [routerLink]="['/displaycourses','course-content',course._id]">
                       <div class="mask"></div>
                     </a>
-  
+
                   </div>
                   <!--Card content-->
                   <mdb-card-body>
@@ -22,8 +22,14 @@
                     <!-- <mdb-card-text>
                      {{course.description | shorten}}
                     </mdb-card-text> -->
-  
-                    <span class="btn btn-outline-primary" (click)="givePermission(course._id)">Accept </span>
+                    <div class="row">
+                      <div class="col-6">
+                        <button mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect (click)="giveAcceptPermission(course._id)">Accept</button>
+                      </div>
+                      <div class="col-6">
+                        <button mdbBtn type="button"  color="danger" outline="true" size="sm" mdbWavesEffect (click)="giveRejectPermission(course._id)">Reject</button>
+                      </div>
+                    </div>
                   </mdb-card-body>
                 </mdb-card>
                 <!-- Card -->

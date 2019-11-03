@@ -27,9 +27,22 @@ export class RecentAddedCourseComponent implements OnInit {
   }
 
 
-  givePermission(id: string){
+  giveAcceptPermission(id: string){
     const permission = {
       value: true
+    }
+    this.courseService.givePermission(permission, id).subscribe(res =>{
+      if(res.state){
+        console.log('course accept');
+      }else{
+        console.log('rejected');
+      }
+    })
+  }
+
+  giveRejectPermission(id: string){
+    const permission = {
+      value: false
     }
     this.courseService.givePermission(permission, id).subscribe(res =>{
       if(res.state){

@@ -142,7 +142,7 @@
 
                                 <div  style="margin-bottom: 10px;">
 
-                                  <div class="input-group">
+                                  <!-- <div class="input-group">
                                     <div class="input-group-prepend">
                                       <span class="input-group-text" id="inputGroupFileAddon01" (click)="uploadVideo(i,m)" >Upload</span>
                                     </div>
@@ -151,10 +151,13 @@
                                         aria-describedby="inputGroupFileAddon01">
                                       <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
+
                                     </div>
                                      <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
 
-                                  </div>
+                                  </div> -->
+                                  <input #f type="file" accept="video/*">
+                                  <button type="button" (click)="uploadVideo(f.files,i,m)">Upload</button>
 
                                   </div>
                               </div>

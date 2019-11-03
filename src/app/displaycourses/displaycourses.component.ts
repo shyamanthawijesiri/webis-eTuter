@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ViewChild } from '@angular/core';
+import { StarRatingComponent } from 'ng-starrating';
 import { CourseService } from '../services/course.service';
 
 @Component({
@@ -172,5 +172,12 @@ export class DisplaycoursesComponent implements OnInit {
     } else {
       this.more3month = '3+month';
     }
+    }
+    //rating
+    onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
+      alert(`Old Value:${$event.oldValue},
+        New Value: ${$event.newValue},
+        Checked Color: ${$event.starRating.checkedcolor},
+        Unchecked Color: ${$event.starRating.uncheckedcolor}`);
     }
 }

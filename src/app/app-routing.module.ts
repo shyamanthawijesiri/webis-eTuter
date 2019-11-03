@@ -5,6 +5,7 @@ import { DisplaycoursesComponent } from './displaycourses/displaycourses.compone
 import { ContentproviderComponent } from './contentprovider/contentprovider.component';
 import { CourseContentComponent } from './displaycourses/course-content/course-content.component';
 import { AdminComponent } from './admin/admin.component';
+import { StudentComponent } from './student/student.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
   {path: 'contentprovider', component: ContentproviderComponent},
   {path: 'admin', component: AdminComponent},
+  {path: 'student', component: StudentComponent},
 
 
 ];

@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   password: string;
   loginForm: FormGroup;
   registerForm: FormGroup;
+  forgetPasswordForm: FormGroup;
   pass: any;
   user: any;
 
@@ -26,7 +27,7 @@ export class NavbarComponent implements OnInit {
   loadedSubCourses: any;
   loadedCourseVideo: any;
 // ----------------------------------------------------
-
+// forget password
 
   constructor(private activatedRoute: ActivatedRoute,
               private courseService: CourseService,
@@ -42,11 +43,17 @@ export class NavbarComponent implements OnInit {
     });
  // register
     this.registerForm = this.fb.group({
-      firstName: ['',Validators.required],
-      lastName: ['',Validators.required],
+      fname: ['',Validators.required],
+      lname: ['',Validators.required],
       email: ['',Validators.email],
-      password: ['',Validators.required]
+      password: ['',Validators.required],
+      role: ['',Validators.required]
     });
+
+    //forgerPassword
+     this.forgetPasswordForm = this.fb.group({
+
+     })
 
     this.courseService.getFullCourse().subscribe(response =>{
       this.fullCourse = response;
@@ -87,7 +94,7 @@ export class NavbarComponent implements OnInit {
         if (data.success) {
          // this.userService.storeUserData(data.token,data.user);
             console.log('succussful login');
-            this.router.navigateByUrl('/mycourses');
+            this.router.navigateByUrl('/student');
             this.userService.storeUserData(data.token, data.user);
             this.userDetails();
         } else {
@@ -144,5 +151,8 @@ export class NavbarComponent implements OnInit {
    return this.userService.loggedIn();
  }
 
+ onForgetPassword() {
+
+ }
 
 }

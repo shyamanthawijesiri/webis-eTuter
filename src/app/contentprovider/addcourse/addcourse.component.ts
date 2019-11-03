@@ -38,7 +38,7 @@ export class AddcourseComponent implements OnInit {
 
     this.authService.authState.subscribe((user) => {
       console.log(user);
-     // localStorage.setItem('token',user.authToken);
+      localStorage.setItem('token',user.authToken);
       this.user = user;
       this.loggedIn = (user != null);
     });
@@ -127,14 +127,14 @@ export class AddcourseComponent implements OnInit {
 
   onSubmit(){
 
-    // this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
-    //   if(res.state){
-    //     console.log('success');
-    //   }else{
-    //     console.log('flase');
+    this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
+      if(res.state){
+        console.log('success');
+      }else{
+        console.log('flase');
 
-    //   }
-    // })
+      }
+    })
     console.log(this.contentForm.value);
 
   }

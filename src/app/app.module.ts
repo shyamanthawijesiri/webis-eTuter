@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { RatingModule } from 'ng-starrating';
 import { MatInputModule,
   MatCardModule,
   MatButtonModule,
@@ -38,6 +39,9 @@ import { CourseContentComponent } from './displaycourses/course-content/course-c
 import { AdminComponent } from './admin/admin.component';
 import { AddcatergoryComponent } from './admin/addcatergory/addcatergory.component';
 import { RecentAddedCourseComponent } from './admin/recent-added-course/recent-added-course.component';
+import { StudentComponent } from './student/student.component';
+import { MyCoursesComponent } from './student/my-courses/my-courses.component';
+import { SettingComponent } from './student/setting/setting.component';
 
 
 export function tokenGetter() {
@@ -78,7 +82,10 @@ let config = new AuthServiceConfig([
     CourseContentComponent,
     AdminComponent,
     AddcatergoryComponent,
-    RecentAddedCourseComponent
+    RecentAddedCourseComponent,
+    StudentComponent,
+    MyCoursesComponent,
+    SettingComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +93,7 @@ let config = new AuthServiceConfig([
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RatingModule,
     MatCheckboxModule,
     MatExpansionModule,
     MatToolbarModule,

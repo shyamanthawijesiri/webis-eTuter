@@ -84,6 +84,12 @@ export class UserService {
 
   }
 
+  changePassword(restpassword, id: string){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put('http://localhost:3000/users/editUserProfile/' + id, restpassword,{headers:headers}).pipe(map((res:any)=>res));
+  }
+
   getRegisteredCourse(id: string){
     return this.http.get('http://localhost:3000/users/' + id);
   }
