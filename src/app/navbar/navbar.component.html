@@ -332,10 +332,10 @@
       <!--Body-->
       <div class="modal-body mx-4">
         <!--Body-->
-        <form  >
+        <form [formGroup]="forgetPasswordForm" (ngSubmit)="onForgetPassword()">
 
           <div class="md-form mb-5">
-            <input type="email" id="Form-email1" class="form-control" mdbInput mdbValidate  >
+            <input type="email" id="Form-email1" class="form-control" mdbInput mdbValidate formControlName="email"  >
             <label for="Form-email1">Email</label>
 
           </div>

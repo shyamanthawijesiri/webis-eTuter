@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
   loadedCourseVideo: any;
 // ----------------------------------------------------
 // forget password
+newPassword: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private courseService: CourseService,
@@ -52,6 +53,7 @@ export class NavbarComponent implements OnInit {
 
     //forgerPassword
      this.forgetPasswordForm = this.fb.group({
+       email: ['', Validators.required]
 
      })
 
@@ -152,6 +154,11 @@ export class NavbarComponent implements OnInit {
  }
 
  onForgetPassword() {
+  this.userService.forgetPassword(this.forgetPasswordForm.value.email).subscribe(res =>{
+    this.newPassword = res;
+    console.log(res)
+  })
+
 
  }
 

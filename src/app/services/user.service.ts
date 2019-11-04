@@ -90,6 +90,9 @@ export class UserService {
     return this.http.put('http://localhost:3000/users/editUserProfile/' + id, restpassword,{headers:headers}).pipe(map((res:any)=>res));
   }
 
+  forgetPassword(email: string){
+    return this.http.get('http://localhost:3000/users/newPassword/' + email);
+  }
   getRegisteredCourse(id: string){
     return this.http.get('http://localhost:3000/users/' + id);
   }
