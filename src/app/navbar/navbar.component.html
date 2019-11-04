@@ -168,7 +168,7 @@
 
 
                 <div class="text-center mt-4">
-                  <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"  data-target="#signinModalForm" (click)="login.show(); frame.hide()" mdbWavesEffect>Login
+                  <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"  data-target="#signinModalForm" (click)="login.show(); frame.hide();onSetRoleStuent()" mdbWavesEffect>Login
                     <mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
                   </button>
                 </div>
@@ -187,7 +187,7 @@
 
 
                 <div class="text-center mt-4">
-                  <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"  data-target="#signinModalForm" (click)="login.show();frame.hide()" mdbWavesEffect>Login
+                  <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"  data-target="#signinModalForm" (click)="login.show();frame.hide();onSetRoleContentprovider()" mdbWavesEffect>Login
                     <mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
                   </button>
                 </div>
@@ -339,6 +339,7 @@
             <label for="Form-email1">Email</label>
 
           </div>
+
 
 
 

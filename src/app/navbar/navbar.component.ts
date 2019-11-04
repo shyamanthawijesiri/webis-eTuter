@@ -7,6 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 import { CourseService } from '../services/course.service';
 import { UserService } from '../services/user.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -21,6 +22,8 @@ export class NavbarComponent implements OnInit {
   forgetPasswordForm: FormGroup;
   pass: any;
   user: any;
+  user2:string;
+  role: string;
 
   fullCourse: any;
   loadedCourses: any;
@@ -90,15 +93,42 @@ newPassword: any;
       console.log(response);
     });
    }
+   // set login role
+   onSetRoleStuent(){
+    this.role = 'student';
+   }
+
+   onSetRoleContentprovider(){
+    this.role = 'contentprovider';
+  }
 
   onLogin(){
     this.userService.authenticateUser(this.loginForm.value).subscribe(data => {
         if (data.success) {
-         // this.userService.storeUserData(data.token,data.user);
-            console.log('succussful login');
-            this.router.navigateByUrl('/student');
-            this.userService.storeUserData(data.token, data.user);
-            this.userDetails();
+           this.userService.storeUserData(data.token,data.user);
+
+
+           this.userService.storeUserData(data.token, data.user);
+           // this.userDetails();
+
+           this.pass = this.userService.loadToken();
+           this.userService.getUser(this.pass.id).subscribe(response => {
+            this.user = response;
+
+            if(this.user.role === this.role){
+
+              console.log('succussful login')
+               this.router.navigateByUrl('/'+this.role);
+            }else{
+              console.log('error login');
+              this.onLogout()
+            }
+
+           });
+
+
+
+
         } else {
           console.log('error login');
         }
@@ -140,6 +170,7 @@ newPassword: any;
   }
   onLogout(){
     this.userService.logout();
+    this.user = null;
   }
 
   userDetails(){
