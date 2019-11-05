@@ -16,7 +16,7 @@ export class RecentAddedCourseComponent implements OnInit {
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
-    this.courseService.getDenyPermissionCourse().subscribe(res =>{
+    this.courseService.getNullPermissionCourse().subscribe(res =>{
       this.denyCourse = res;
       console.log(res);
        //get object size

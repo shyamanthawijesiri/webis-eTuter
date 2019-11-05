@@ -69,8 +69,8 @@ registerUserToCourse(course, id: string){
 
 }
 
-getDenyPermissionCourse(){
-  return this.http.get('http://localhost:3000/course/display/permissionDenyCourse');
+getNullPermissionCourse(){
+  return this.http.get('http://localhost:3000/course/display/permissionNullCourse');
 }
 
 givePermission(permission, id: string){

@@ -43,7 +43,8 @@ newPassword: any;
  // login
     this.loginForm = this.fb.group({
       email: ['',Validators.email],
-      password: ['',Validators.required]
+      password: ['',Validators.required],
+      role:['',Validators.required]
     });
  // register
     this.registerForm = this.fb.group({
@@ -55,10 +56,10 @@ newPassword: any;
     });
 
     //forgerPassword
-     this.forgetPasswordForm = this.fb.group({
+    this.forgetPasswordForm = this.fb.group({
        email: ['', Validators.required]
 
-     })
+     });
 
     this.courseService.getFullCourse().subscribe(response =>{
       this.fullCourse = response;
@@ -95,11 +96,13 @@ newPassword: any;
    }
    // set login role
    onSetRoleStuent(){
-    this.role = 'student';
+    //this.role = 'student';
+    this.loginForm.get('role').setValue('student');
    }
 
    onSetRoleContentprovider(){
-    this.role = 'contentprovider';
+   // this.role = 'contentprovider';
+   this.loginForm.get('role').setValue('contentProvider');
   }
 
   onLogin(){
@@ -115,16 +118,17 @@ newPassword: any;
            this.userService.getUser(this.pass.id).subscribe(response => {
             this.user = response;
 
-            if(this.user.role === this.role){
+            // if(this.user.role === this.role){
 
-              console.log('succussful login')
-               this.router.navigateByUrl('/'+this.role);
-            }else{
-              console.log('error login');
-              this.onLogout()
-            }
+            //   console.log('succussful login')
+            //    this.router.navigateByUrl('/'+this.role);
+            // }else{
+            //   console.log('error login');
+            //   this.onLogout()
+            // }
 
            });
+           this.router.navigateByUrl('/'+this.loginForm.get('role').value);
 
 
 

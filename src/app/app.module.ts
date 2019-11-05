@@ -43,6 +43,7 @@ import { StudentComponent } from './student/student.component';
 import { MyCoursesComponent } from './student/my-courses/my-courses.component';
 import { SettingComponent } from './student/setting/setting.component';
 import { CourseVideoComponent } from './course-video/course-video.component';
+import { ContentProviderComponent } from './admin/content-provider/content-provider.component';
 
 
 export function tokenGetter() {
@@ -87,7 +88,8 @@ let config = new AuthServiceConfig([
     StudentComponent,
     MyCoursesComponent,
     SettingComponent,
-    CourseVideoComponent
+    CourseVideoComponent,
+    ContentProviderComponent
   ],
   imports: [
     BrowserModule,

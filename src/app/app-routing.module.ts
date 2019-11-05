@@ -17,10 +17,10 @@ const routes: Routes = [
   {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},
   {path: 'displaycourses/course-content/:id', component: CourseContentComponent},
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
-  {path: 'contentprovider', component: ContentproviderComponent},
+  {path: 'contentProvider', component: ContentproviderComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'student', component: StudentComponent},
-  {path: 'coursevideo', component: CourseVideoComponent},
+  {path: ':id/coursevideo', component: CourseVideoComponent},
 
 
 ];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CourseService } from '../services/course.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-course-video',
@@ -10,16 +11,27 @@ import { CourseService } from '../services/course.service';
 export class CourseVideoComponent implements OnInit {
   videos = [];
   course: any;
+  courseId: {id: string }
   url: any;
   name: string;
   vidName:string;
-  constructor(private a: DomSanitizer, private courseService: CourseService) { }
+
+  constructor(private a: DomSanitizer,
+              private courseService: CourseService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
    //  this.videos.push(this.a.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+'Hnh0NtGtSuM'+'?enablejsapi=1'));
    //  this.url = this.a.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+'Hnh0NtGtSuM'+'?enablejsapi=1');
-
-    this.courseService.displaycourse('5dc0f95e06bf736c081704b1').subscribe(res =>{
+   this.courseId = {
+    id: this.activatedRoute.snapshot.paramMap.get('id')
+  };
+   this.activatedRoute.params.subscribe(
+    (params: Params) => {
+      this.courseId.id = params['id'];
+    }
+  );
+   this.courseService.displaycourse(this.courseId.id).subscribe(res =>{
       this.course = res;
       console.log(res);
       this.url = this.a.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res['firstVideoId'] +'?enablejsapi=1');

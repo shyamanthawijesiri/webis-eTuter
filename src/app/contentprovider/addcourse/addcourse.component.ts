@@ -6,6 +6,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-addcourse',
@@ -13,6 +14,7 @@ import {  GoogleLoginProvider } from "angularx-social-login";
   styleUrls: ['./addcourse.component.scss']
 })
 export class AddcourseComponent implements OnInit {
+  selectedFile: File = null;
   loadedCatergory: any;
   loadedSubcatergory: any;
   catergory = '';
@@ -22,12 +24,14 @@ export class AddcourseComponent implements OnInit {
     contentForm: FormGroup;
 
   user: any;
+  pass: any;
   loggedIn = false;
 
   constructor(private fb: FormBuilder,
               private subCatergoryService: SubcatergoryService,
               private catergoryService: CatergoryService,
               private courseService: CourseService,
+              private userService: UserService,
               private http: HttpClient,
               private authService: AuthService)
               { }
@@ -42,22 +46,25 @@ export class AddcourseComponent implements OnInit {
       this.user = user;
       this.loggedIn = (user != null);
     });
-
+    // load subcatergories
     this.subCatergoryService.getSubcatergory().subscribe(res =>{
       this.loadedSubcatergory = res;
       console.log(res);
 
     });
-
+    // load catergories
     this.catergoryService.getCatergory().subscribe(res =>{
       this.loadedCatergory = res;
       console.log(res);
     });
-
+    // content provider details
+    this.pass = this.userService.loadToken();
 
     this.contentForm = this.fb.group({
       name: ['',Validators.required],
       description: ['',Validators.required],
+      author:['',Validators.required],
+      authorId:['',Validators.required],
       catergory: ['',Validators.required],
       subCatergory: ['',Validators.required],
       type: ['',Validators.required],
@@ -155,7 +162,8 @@ export class AddcourseComponent implements OnInit {
   // }
 
   onSubmit(){
-
+    this.contentForm.get('author').setValue(this.pass.name);
+    this.contentForm.get('authorId').setValue(this.pass.id);
     this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
       if(res.state){
         console.log('success');
@@ -198,11 +206,13 @@ export class AddcourseComponent implements OnInit {
       }
     });
 
-
-
-
-
   }
+
+  // onFileSelected(event){
+  //   this.selectedFile = <File>event.target.files[0];
+  //   this.userService.uploadImage(this.selectedFile,this.pass.id);
+  // }
+
 
 
 }
