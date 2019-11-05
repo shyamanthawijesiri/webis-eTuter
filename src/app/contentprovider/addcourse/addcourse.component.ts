@@ -63,13 +63,34 @@ export class AddcourseComponent implements OnInit {
       type: ['',Validators.required],
       skillLevel: ['',Validators.required],
       duration: ['', Validators.required],
+      firstVideoId:['',Validators.required],
       topics: this.fb.array([this.fb.group({
         topic:['', Validators.required],
-        videos : this.fb.array([new FormControl('',Validators.required)]),
+        videos : this.fb.array([this.fb.group({
+          videoName:['',Validators.required],
+          video:['',Validators.required],
+        })]),
         files: this.fb.array([new FormControl('', Validators.required)])
       })]),
 
     });
+
+    //   this.contentForm = this.fb.group({
+    //   name: ['', Validators.required],
+    //   description: ['',Validators.required],
+    //   catergory: ['',Validators.required],
+    //   subCatergory: ['',Validators.required],
+    //   type: ['',Validators.required],
+    //   skillLevel: ['',Validators.required],
+    //   duration: ['', Validators.required],
+    //   topics: this.fb.array([this.fb.group({
+    //     topic:['', Validators.required],
+    //     videos : this.fb.array([new FormControl('',Validators.required)]),
+    //     files: this.fb.array([new FormControl('', Validators.required)])
+    //   })]),
+
+    // });
+
 
 
   }
@@ -77,6 +98,7 @@ export class AddcourseComponent implements OnInit {
 
   get topic() {
     return this.contentForm.get('topics') as FormArray;
+
     }
 
 
@@ -86,7 +108,10 @@ export class AddcourseComponent implements OnInit {
 
     const vid = this.topic.at(i).get('videos') as FormArray;
     const file = this.topic.at(i).get('files') as FormArray;
-    vid.push(new FormControl('',Validators.required));
+    vid.push(this.fb.group({
+      videoName:['',Validators.required],
+      video : ['',Validators.required]
+    }));
     file.push(new FormControl('',Validators.required))
 
   }
@@ -99,7 +124,10 @@ export class AddcourseComponent implements OnInit {
 
     this.topic.push(this.fb.group({
       topic:['', Validators.required],
-      videos : new FormArray([new FormControl('',Validators.required)]),
+      videos : this.fb.array([this.fb.group({
+        videoName:['',Validators.required],
+        video:['',Validators.required],
+      })]),
       files : new FormArray([new FormControl('',Validators.required)])
     })
     );
@@ -115,7 +143,8 @@ export class AddcourseComponent implements OnInit {
   }
   onDeleteVideo(i: number, k: number){
     (this.topic.at(i).get('videos') as FormArray).removeAt(k);
-    console.log(k);
+    console.log(k)
+    console.log(i)
   }
 
   // uploadVideo(i:number, k: number){
@@ -150,7 +179,7 @@ export class AddcourseComponent implements OnInit {
     this.authService.signOut();
   }
 
-  uploadVideo(files, i: number, k: number) {
+  uploadVideo(files, i: number, m: number) {
     let headers = {
       headers: new HttpHeaders()
         .set('authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -161,8 +190,18 @@ export class AddcourseComponent implements OnInit {
     this.http.post(url, formData, headers).subscribe(res => {
       console.log(res);
       console.log(res['id']);
-      (this.topic.at(i).get('videos') as FormArray).at(k).setValue([res['id']]);
+      // (this.topic.at(i).get('videos') as FormArray).at(k).setValue([res['id']]);
+      (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
+      if(i === 0 && m === 0){
+        this.contentForm.get('firstVideoId').setValue('dfdfdfdf')
+
+      }
     });
+
+
+
+
+
   }
 
 

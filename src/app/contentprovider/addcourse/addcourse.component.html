@@ -156,8 +156,19 @@
                                      <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
 
                                   </div> -->
-                                  <input #f type="file" accept="video/*">
-                                  <button type="button" (click)="uploadVideo(f.files,i,m)">Upload</button>
+                                  <div [formGroupName]="m">
+                                    <div style="margin-bottom: 20px;">
+
+                                      <div class="form-group" style="margin-right:15px;">
+                                          <input placeholder='Video Name' formControlName="videoName" class="form-control" >
+                                        </div>
+                                           <input #f type="file" accept="video/*">
+                                           <button type="button" (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;">Upload</button>
+
+                                           <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
+                                      </div>
+                                  </div>
+
 
                                   </div>
                               </div>
@@ -167,7 +178,7 @@
 
                     <div class="col-md-4" class="form-group" formArrayName="files"  style="width: 33%" >
                         <div  *ngFor="let file of topic['controls'].files['controls'];let j=index;" >
-                            <div  style="margin-bottom: 10px;">
+                            <div  style="margin-bottom: 90px;">
                               <div class="input-group">
 
                                 <div class="input-group-prepend">

@@ -6,6 +6,7 @@ import { ContentproviderComponent } from './contentprovider/contentprovider.comp
 import { CourseContentComponent } from './displaycourses/course-content/course-content.component';
 import { AdminComponent } from './admin/admin.component';
 import { StudentComponent } from './student/student.component';
+import { CourseVideoComponent } from './course-video/course-video.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'contentprovider', component: ContentproviderComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'student', component: StudentComponent},
+  {path: 'coursevideo', component: CourseVideoComponent},
 
 
 ];
