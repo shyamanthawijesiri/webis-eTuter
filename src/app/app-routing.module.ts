@@ -19,10 +19,11 @@ const routes: Routes = [
   {path: 'displaycourses/course-content/:id', component: CourseContentComponent},
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
   {path: 'contentProvider', component: ContentproviderComponent},
-  {path: 'Admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent},
   {path: 'student', component: StudentComponent},
   {path: ':id/coursevideo', component: CourseVideoComponent},
   {path: 'superAdmin', component: SuperAdminComponent},
+  {path: 'studentprofile/:id',component: StudentComponent }
 
 
 

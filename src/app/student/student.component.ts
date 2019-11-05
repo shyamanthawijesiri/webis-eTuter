@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
-
-  constructor() { }
+ userId:any
+ disable: boolean = false;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.userId = this.activatedRoute.snapshot.paramMap.get('id')
+
+    if(this.userId == null){
+      this.disable = false;
+    }else{
+      this.disable = true;
+    }
   }
 
 }
