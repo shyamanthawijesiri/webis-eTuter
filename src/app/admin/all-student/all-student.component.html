@@ -1,11 +1,11 @@
 
         <div class="row" >
-            <div class="col-md-3" *ngFor="let cp of contentProvider" >
+            <div class="col-md-3" *ngFor="let stu of allStudent" >
              <!-- Card -->
               <mdb-card >
                   <div class="view rgba-white-slight waves-light" mdbWavesEffect>
                     <!-- Card img -->
-                    <img src="{{cp.imageURL}}" alt="Card image cap" >
+                    <img src="{{stu.imageURL}}" alt="Card image cap" >
                     <!-- <a [routerLink]="['/',course._id,'coursevideo']">
                       <div class="mask"></div>
                     </a> -->
@@ -17,14 +17,14 @@
                     <mdb-card-title>
                       <!-- <h4>{{c.name}}</h4> -->
                     </mdb-card-title>
-                    <P>Name:{{cp.fname}} {{cp.lname}}</P>
+                    <P>Name:{{stu.fname}} {{stu.lname}}</P>
                     <!--Text-->
                     <mdb-card-text>
-                     Email:{{cp.email}}
+                     Email:{{stu.email}}
                     </mdb-card-text>
                     <div class="row">
                       <div class="col">
-                        <button mdbBtn type="button"  color="danger" outline="true" size="sm" mdbWavesEffect (click)="onDelete(cp._id)">Delete</button>
+                        <button mdbBtn type="button"  color="danger" outline="true" size="sm" mdbWavesEffect (click)="onDeleteStu(stu._id)">Delete</button>
                       </div>
                     </div>
                   </mdb-card-body>

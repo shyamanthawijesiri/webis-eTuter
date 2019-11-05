@@ -48,6 +48,7 @@ import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AddAdminComponent } from './super-admin/add-admin/add-admin.component';
 import { AllAdminComponent } from './super-admin/all-admin/all-admin.component';
+import { AllStudentComponent } from './admin/all-student/all-student.component';
 
 
 export function tokenGetter() {
@@ -97,7 +98,8 @@ let config = new AuthServiceConfig([
     SuperAdminComponent,
     AdminNavbarComponent,
     AddAdminComponent,
-    AllAdminComponent
+    AllAdminComponent,
+    AllStudentComponent
   ],
   imports: [
     BrowserModule,

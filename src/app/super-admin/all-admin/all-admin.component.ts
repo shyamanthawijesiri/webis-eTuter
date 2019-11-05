@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-admin.component.scss']
 })
 export class AllAdminComponent implements OnInit {
-
+  allAdmins: any;
+  allSuperAdmins: any;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDeleteAd(id: string){
+
   }
 
 }

@@ -122,7 +122,7 @@ export class UserService {
     return this.http.get('http://localhost:3000/users/contentProviders')
   }
 
-  //delete content provider
+  //delete content provider and student
   deleteCP(id: string){
 
     const httpOption ={
@@ -131,8 +131,17 @@ export class UserService {
         'Authorization' : localStorage.getItem('id_token')
     })
     };
-
     return this.http.delete('http://localhost:3000/users/delete/' + id, httpOption).pipe(map((res: any) => res));
   }
 
+  getAllStudent(){
+    return this.http.get('http://localhost:3000/users/student');
+  }
+
+  getAllAdmin(){
+    return this.http.get('http://localhost:3000/users/admins');
+  }
+  getAllSupperAdmin(){
+    return this.http.get('http://localhost:3000/users/supperadmins');
+  }
 }
