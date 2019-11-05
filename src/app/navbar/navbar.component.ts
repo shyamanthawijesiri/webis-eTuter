@@ -111,7 +111,6 @@ newPassword: any;
            this.userService.storeUserData(data.token,data.user);
 
 
-           this.userService.storeUserData(data.token, data.user);
            // this.userDetails();
 
            this.pass = this.userService.loadToken();

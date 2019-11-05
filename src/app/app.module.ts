@@ -44,6 +44,10 @@ import { MyCoursesComponent } from './student/my-courses/my-courses.component';
 import { SettingComponent } from './student/setting/setting.component';
 import { CourseVideoComponent } from './course-video/course-video.component';
 import { ContentProviderComponent } from './admin/content-provider/content-provider.component';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { AddAdminComponent } from './super-admin/add-admin/add-admin.component';
+import { AllAdminComponent } from './super-admin/all-admin/all-admin.component';
 
 
 export function tokenGetter() {
@@ -89,7 +93,11 @@ let config = new AuthServiceConfig([
     MyCoursesComponent,
     SettingComponent,
     CourseVideoComponent,
-    ContentProviderComponent
+    ContentProviderComponent,
+    SuperAdminComponent,
+    AdminNavbarComponent,
+    AddAdminComponent,
+    AllAdminComponent
   ],
   imports: [
     BrowserModule,

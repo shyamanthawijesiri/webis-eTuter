@@ -8,6 +8,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ContentProviderComponent implements OnInit {
   contentProvider: any;
+  pass: any;
+  token: any;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -17,9 +19,21 @@ export class ContentProviderComponent implements OnInit {
       this.contentProvider = res;
       console.log(res);
     })
+    this.token = this.userService.loadUserToken()
+    console.log(this.token)
   }
 
-  onDelete(){
+  onDelete(id: string){
+    this.userService.deleteCP(id).subscribe((res:any) =>{
+      if(res.state){
+        console.log('delete')
+        window.location.reload();
+      }else{
+        console.log('error delete')
+      }
+
+    })
+
 
   }
 
