@@ -97,8 +97,8 @@ export class UserService {
 
   }
 
-  deleteAccount(id: string){
-      return this.http.delete('http://localhost:3000/users/remove/'+id);
+  deleteAccount(id: string,password){
+      return this.http.delete('http://localhost:3000/users/remove/'+id,password);
   }
 
   changePassword(restpassword, id: string){

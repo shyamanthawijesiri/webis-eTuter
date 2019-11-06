@@ -84,7 +84,9 @@ giveRate(id: string, rate){
  rating = new EventEmitter<string>();
 
 
- Addcourse(course){
+ Addcourse(course,selectedFile: File){
+  const fd = new FormData();
+  fd.append('image', selectedFile, selectedFile.name);
   return this.http.post('http://localhost:3000/course/put', course).pipe(map((res: any) => res))
  }
 
@@ -93,6 +95,16 @@ giveRate(id: string, rate){
    return this.http.get('http://localhost:3000/subCatergory/display/' + catergory);
 
 }
+// course image
+// uploadCourseImg(selectedFile: File){
+//   const fd = new FormData();
+//   fd.append('image', selectedFile, selectedFile.name);
+//   this.http.post('http://localhost:3000/course/put/',fd)
+//     .subscribe(res => {
+//       console.log(res);
+//     });
+// }
+
 
    courseUpdate = new EventEmitter<string>( )
 

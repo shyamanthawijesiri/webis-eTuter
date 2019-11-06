@@ -24,6 +24,9 @@ export class SettingComponent implements OnInit {
     //error msg
     incorrectPass: string;
 
+    // delete course
+    delPassword: string;
+
   constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -103,7 +106,10 @@ export class SettingComponent implements OnInit {
   }
 
   onDelete(){
-    this.userService.deleteAccount(this.pass.id).subscribe((res:any) =>{
+    const del = {
+      password: this.delPassword
+    }
+    this.userService.deleteAccount(this.pass.id,del).subscribe((res:any) =>{
       if(res.state){
         console.log('successfully delete')
         this.userService.logout();
