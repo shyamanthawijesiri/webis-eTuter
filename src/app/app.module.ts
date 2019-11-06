@@ -18,6 +18,7 @@ import { MatInputModule,
   MatSelectModule,
   MatIconModule
  } from '@angular/material';
+
 import { SocialLoginModule, AuthServiceConfig, LoginOpt } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 
@@ -49,6 +50,7 @@ import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AddAdminComponent } from './super-admin/add-admin/add-admin.component';
 import { AllAdminComponent } from './super-admin/all-admin/all-admin.component';
 import { AllStudentComponent } from './admin/all-student/all-student.component';
+import { SearchCourseComponent } from './search-course/search-course.component';
 
 
 export function tokenGetter() {
@@ -99,7 +101,8 @@ let config = new AuthServiceConfig([
     AdminNavbarComponent,
     AddAdminComponent,
     AllAdminComponent,
-    AllStudentComponent
+    AllStudentComponent,
+    SearchCourseComponent
   ],
   imports: [
     BrowserModule,

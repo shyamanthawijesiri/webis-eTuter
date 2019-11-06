@@ -33,6 +33,14 @@ export class NavbarComponent implements OnInit {
 // forget password
 newPassword: any;
 
+// search
+searchCourse:any;
+searchArr =[];
+myControl = new FormControl();
+unique = [];
+
+filteredOptions: Observable<string[]>;
+
   constructor(private activatedRoute: ActivatedRoute,
               private courseService: CourseService,
               private userService: UserService,
@@ -64,12 +72,16 @@ newPassword: any;
     this.courseService.getFullCourse().subscribe(response =>{
       this.fullCourse = response;
       console.log(this.fullCourse.name)
+      this.search();
     });
 
-    console.log('auto complete')
-    console.log(this.fullCourse)
-    console.log('auto complete')
+    // search
 
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
 
     this.courseService.getCourses()
     .subscribe(response => {
@@ -78,6 +90,8 @@ newPassword: any;
     // get user image
 
     this.userDetails();
+
+
   }
   // subcatergory update
    onSelect(courseName: string){
@@ -196,5 +210,31 @@ newPassword: any;
 
 
  }
+
+ onSearch(option){
+   this.courseService.searchCourse(option).subscribe(res=> {
+     console.log(option)
+     this.searchCourse = res;
+     this.router.navigateByUrl('/searchcourses')
+     this.courseService.sCourse.emit(res);
+   })
+ }
+
+ search(){
+   this.fullCourse.forEach(element => {
+    this.searchArr.push(element.name);
+
+   });
+   this.unique = [...new Set(this.searchArr)];
+   console.log(this.searchArr);
+   console.log(this.unique);
+ }
+
+
+ private _filter(value: string): string[] {
+  const filterValue = value.toLowerCase();
+
+  return this.unique.filter(option => option.toLowerCase().includes(filterValue));
+}
 
 }

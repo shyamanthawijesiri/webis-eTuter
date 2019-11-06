@@ -30,9 +30,41 @@
     <!-- Links -->
 
     <!-- Search form -->
-    <form class="form-inline waves-light" mdbWavesEffect>
-      <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <form >
+      <div >
+        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="searchValue" name="searchValue"> -->
+
+
+        <!-- <form >
+          <mat-form-field>
+
+
+              <div class="col-6">
+
+                <input type="text"  aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" style="border:none;width: 100%;">
+                 <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  (click)="onSearch(option)"  >
+                    {{option}}
+                  </mat-option>
+                 </mat-autocomplete>
+
+              </div>
+
+
+
+          </mat-form-field>
+        </form> -->
+        <form class="example-form" style="margin-top: 10px;">
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="onSearch(option)">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+
       </div>
     </form>
 

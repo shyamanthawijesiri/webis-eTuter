@@ -10,6 +10,7 @@ import {HttpClient,HttpClientModule,HttpHeaders, HttpErrorResponse} from '@angul
 })
 export class CourseService {
 
+sCourse =new EventEmitter<any>();
 
   constructor(private http:HttpClient) { }
 
@@ -99,6 +100,9 @@ giveRate(id: string, rate){
 
    return this.http.get('http://localhost:3000/subCatergory/display/' + catergory);
 
+}
+searchCourse(value){
+  return this.http.get('http://localhost:3000/course/search/' + value);
 }
 // course image
 // uploadCourseImg(selectedFile: File){

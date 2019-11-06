@@ -8,6 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { StudentComponent } from './student/student.component';
 import { CourseVideoComponent } from './course-video/course-video.component';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { SearchCourseComponent } from './search-course/search-course.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'student', component: StudentComponent},
   {path: ':id/coursevideo', component: CourseVideoComponent},
   {path: 'superAdmin', component: SuperAdminComponent},
-  {path: 'studentprofile/:id',component: StudentComponent }
+  {path: 'studentprofile/:id',component: StudentComponent },
+  {path: 'searchcourses',component:SearchCourseComponent  }
 
 
 
