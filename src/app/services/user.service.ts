@@ -75,10 +75,8 @@ export class UserService {
   uploadImage(selectedFile: File,id: string){
     const fd = new FormData();
     fd.append('image', selectedFile, selectedFile.name);
-    this.http.post('http://localhost:3000/users/uploadUserImage/'+id,fd)
-    .subscribe(res => {
-      console.log(res);
-    });
+    this.http.post('http://localhost:3000/users/uploadUserImage/'+id,fd).pipe(map((res:any)=>res))
+
 
 
   }
@@ -98,7 +96,7 @@ export class UserService {
   }
 
   deleteAccount(id: string,password){
-      return this.http.delete('http://localhost:3000/users/remove/'+id,password);
+      return this.http.delete('http://localhost:3000/users/remove/'+id+'/'+password).pipe(map((res:any)=>res));;
   }
 
   changePassword(restpassword, id: string){

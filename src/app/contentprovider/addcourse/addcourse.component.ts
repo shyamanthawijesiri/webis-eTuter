@@ -162,21 +162,30 @@ export class AddcourseComponent implements OnInit {
   // }
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
+
   }
 
   onSubmit(){
     this.contentForm.get('author').setValue(this.pass.name);
     this.contentForm.get('authorId').setValue(this.pass.id);
    // this.courseService.uploadCourseImg(this.selectedFile);
-    this.courseService.Addcourse(this.selectedFile,this.contentForm.value).subscribe(res =>{
+    this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
       if(res.state){
-        console.log('success');
+        console.log('course upload')
+        console.log(this.contentForm.value)
+        console.log(res.course['_id'])
+        this.courseService.courseImgUpload(this.selectedFile, res.course['_id']).subscribe(res => {
+          if(res.state){
+            console.log('success couse update with image');
+          }else{
+            console.log('error img')
+          }
+        });
       }else{
         console.log('flase');
 
       }
     })
-    console.log(this.contentForm.value);
 
   }
 

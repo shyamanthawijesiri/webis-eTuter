@@ -84,10 +84,15 @@ giveRate(id: string, rate){
  rating = new EventEmitter<string>();
 
 
- Addcourse(course,selectedFile: File){
+ Addcourse(course){
+
+  return this.http.post('http://localhost:3000/course/put', course).pipe(map((res:any)=>res));
+
+  }
+ courseImgUpload(selectedFile:File, id: string){
   const fd = new FormData();
   fd.append('image', selectedFile, selectedFile.name);
-  return this.http.post('http://localhost:3000/course/put', course).pipe(map((res: any) => res))
+  return this.http.post('http://localhost:3000/course/uploadCourseImage/'+ id, fd).pipe(map((res:any)=>res));
  }
 
  getSubcourses(catergory){

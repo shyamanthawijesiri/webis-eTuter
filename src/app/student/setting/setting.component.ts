@@ -106,10 +106,11 @@ export class SettingComponent implements OnInit {
   }
 
   onDelete(){
-    const del = {
-      password: this.delPassword
-    }
-    this.userService.deleteAccount(this.pass.id,del).subscribe((res:any) =>{
+
+    //console.log(del)
+    this.userService.deleteAccount(this.pass.id,this.delPassword).subscribe((res:any) =>{
+      console.log(this.pass.id)
+      console.log(this.delPassword)
       if(res.state){
         console.log('successfully delete')
         this.userService.logout();
