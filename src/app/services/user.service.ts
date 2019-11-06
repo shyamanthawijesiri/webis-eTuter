@@ -98,7 +98,7 @@ export class UserService {
   }
 
   deleteAccount(id: string){
-
+      return this.http.delete('http://localhost:3000/users/remove/'+id);
   }
 
   changePassword(restpassword, id: string){
@@ -143,5 +143,17 @@ export class UserService {
   }
   getAllSupperAdmin(){
     return this.http.get('http://localhost:3000/users/supperadmins');
+  }
+
+  // get conten providers courses
+  getCPPendingCourse(id){
+    console.log(id);
+    return this.http.get('http://localhost:3000/course/contentProvider/permissionNullCourse/'+ id);
+  }
+  getCPRejectCourse(id){
+    return this.http.get('http://localhost:3000/course/contentProvider/permissionFalseCourse/'+ id);
+  }
+  getCPApprovedCourse(id){
+    return this.http.get('http://localhost:3000/course/contentProvider/permissionTrueCourse/'+ id);
   }
 }

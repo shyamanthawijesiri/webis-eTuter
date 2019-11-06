@@ -10,6 +10,7 @@ export class ContentproviderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

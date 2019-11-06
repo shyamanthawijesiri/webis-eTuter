@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-setting',
@@ -22,7 +24,7 @@ export class SettingComponent implements OnInit {
     //error msg
     incorrectPass: string;
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
 
@@ -97,6 +99,22 @@ export class SettingComponent implements OnInit {
     }
 
 
+
+  }
+
+  onDelete(){
+    this.userService.deleteAccount(this.pass.id).subscribe((res:any) =>{
+      if(res.state){
+        console.log('successfully delete')
+        this.userService.logout();
+        this.router.navigateByUrl('/home');
+
+
+      }else{
+        console.log('error delete')
+      }
+
+    })
 
   }
 

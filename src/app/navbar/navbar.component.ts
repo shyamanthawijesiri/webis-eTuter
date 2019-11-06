@@ -127,7 +127,8 @@ newPassword: any;
             // }
 
            });
-           this.router.navigateByUrl('/'+this.loginForm.get('role').value);
+           console.log('login success')
+           this.router.navigateByUrl('/' + this.loginForm.get('role').value);
 
 
 

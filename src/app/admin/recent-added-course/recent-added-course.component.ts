@@ -34,6 +34,7 @@ export class RecentAddedCourseComponent implements OnInit {
     this.courseService.givePermission(permission, id).subscribe(res =>{
       if(res.state){
         console.log('course accept');
+
       }else{
         console.log('rejected');
       }

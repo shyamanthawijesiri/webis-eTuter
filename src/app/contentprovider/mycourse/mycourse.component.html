@@ -1,1 +1,102 @@
-<p>mycourse works!</p>
+<div class="pending">
+ <h3 class="text-center">Permission Pending Courses</h3>
+  <div class="row" >
+    <div class="col-md-3" *ngFor="let course of pending" >
+     <!-- Card -->
+      <mdb-card >
+          <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+            <!-- Card img -->
+            <img src="{{course.url}}" alt="Card image cap" >
+            <a [routerLink]="['/',course._id,'coursevideo']">
+              <div class="mask"></div>
+            </a>
+
+          </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>{{course.name}}</h4>
+            </mdb-card-title>
+            <P>Author: {{course.author}}</P>
+            <!--Text-->
+            <!-- <mdb-card-text>
+             {{course.description | shorten}}
+            </mdb-card-text> -->
+
+          </mdb-card-body>
+        </mdb-card>
+        <!-- Card -->
+    </div>
+  </div>
+
+
+</div>
+<div class="accept">
+  <h3 class="text-center">Accept Courses</h3>
+  <div class="row" >
+    <div class="col-md-3" *ngFor="let course of accepted" >
+     <!-- Card -->
+      <mdb-card >
+          <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+            <!-- Card img -->
+            <img src="{{course.url}}" alt="Card image cap" >
+            <a [routerLink]="['/',course._id,'coursevideo']">
+              <div class="mask"></div>
+            </a>
+
+          </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>{{course.name}}</h4>
+            </mdb-card-title>
+            <P>Author: {{course.author}}</P>
+            <!--Text-->
+            <!-- <mdb-card-text>
+             {{course.description | shorten}}
+            </mdb-card-text> -->
+
+          </mdb-card-body>
+        </mdb-card>
+        <!-- Card -->
+    </div>
+  </div>
+
+
+</div>
+<div class="reject">
+  <h3 class="text-center">Reject Courses</h3>
+  <div class="row" >
+    <div class="col-md-3" *ngFor="let course of rejected" >
+     <!-- Card -->
+      <mdb-card >
+          <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+            <!-- Card img -->
+            <img src="{{course.url}}" alt="Card image cap" >
+            <a [routerLink]="['/',course._id,'coursevideo']">
+              <div class="mask"></div>
+            </a>
+
+          </div>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>{{course.name}}</h4>
+            </mdb-card-title>
+            <P>Author: {{course.author}}</P>
+            <!--Text-->
+            <!-- <mdb-card-text>
+             {{course.description | shorten}}
+            </mdb-card-text> -->
+
+          </mdb-card-body>
+        </mdb-card>
+        <!-- Card -->
+    </div>
+  </div>
+
+
+</div>
