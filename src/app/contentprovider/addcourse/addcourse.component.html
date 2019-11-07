@@ -53,7 +53,7 @@
 
               <mat-form-field style="margin-bottom:20px;">
                 <mat-select formControlName="subCatergory" placeholder="select sub-catergory">
-                  <mat-option *ngFor="let subcatergory of loadedSubcatergory | subcatergory:catergory; let i=index;" value="subcatergory.name"  >{{subcatergory.name}}</mat-option>
+                  <mat-option *ngFor="let subcatergory of loadedSubcatergory | subcatergory:catergory; let i=index;" [value]="subcatergory.name"  >{{subcatergory.name}}</mat-option>
 
                 </mat-select>
               </mat-form-field>

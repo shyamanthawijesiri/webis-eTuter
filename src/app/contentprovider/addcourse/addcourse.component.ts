@@ -214,7 +214,7 @@ export class AddcourseComponent implements OnInit {
       // (this.topic.at(i).get('videos') as FormArray).at(k).setValue([res['id']]);
       (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
       if(i === 0 && m === 0){
-        this.contentForm.get('firstVideoId').setValue('dfdfdfdf')
+        this.contentForm.get('firstVideoId').setValue(res['id'])
 
       }
     });

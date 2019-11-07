@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'webis-tuter';
 
   ngOnInt(){
-    console.log('appcomponent')
+    console.log('appcomponent1')
   }
 }

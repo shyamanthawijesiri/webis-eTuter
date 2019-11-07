@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { EventEmitter } from 'events';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +23,6 @@ export class SubcatergoryService {
  deleteSubcatergory(subCatergory){
   return this.http.delete('http://localhost:3000/subCatergory/delete/'+subCatergory);
  }
+
+// navBar = new EventEmitter<string>( );
 }

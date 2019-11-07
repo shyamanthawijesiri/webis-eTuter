@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
     //   this.topCourse = res;
     //   this.slides = this.chunk(res, 4);
     // });
+    console.log(window.location.pathname);
 
     this.courseService.getNullPermissionCourse().subscribe(res =>{
       this.upCommingCourse = res;

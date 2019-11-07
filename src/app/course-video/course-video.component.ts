@@ -38,6 +38,7 @@ export class CourseVideoComponent implements OnInit {
    this.courseService.displaycourse(this.courseId.id).subscribe(res =>{
       this.course = res;
       console.log(res);
+      console.log(res['firstVideoId'])
       this.url = this.a.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res['firstVideoId'] +'?enablejsapi=1');
     })
 
