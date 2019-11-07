@@ -1,10 +1,22 @@
-<p style="margin-top: 100px;">{{name}} : {{vidName}}</p>
+<h3  class= "text-center" style="margin-top: 100px; font-weight: bold;">{{course.name}}</h3>
+<p >{{name}} : {{vidName}}</p>
 <div class="row">
   <div class="col">
       <div >
           <iframe  id="player" type="text/html" width="100%" height="400" [src]="url" frameborder="0" allowfullscreen ></iframe>
 
         </div>
+        <div class="row">
+          <div class="col-sm" style="max-width: 120px;">
+            <p style="margin-top: 8px;">Give A Rate</p>
+
+          </div>
+          <div class="col-sm">
+            <star-rating  value="3" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="false" (rate)="onRate($event)"></star-rating>
+
+          </div>
+        </div>
+
   </div>
   <div class="col">
       <div>
@@ -22,6 +34,7 @@
   </div>
 </div>
 <hr>
+
 <app-footer></app-footer>
 
 <!-- <ul *ngFor="let vid of videos;">

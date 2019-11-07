@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CourseService } from '../services/course.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { StarRatingComponent } from 'ng-starrating';
 
 @Component({
   selector: 'app-course-video',
@@ -45,6 +46,17 @@ export class CourseVideoComponent implements OnInit {
     this.name = name;
     this.vidName = vidname;
 
+  }
+  val
+
+  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
+    this.val = $event.oldValue
+    console.log(this.val)
+    alert(`Old Value:${$event.oldValue},
+
+      New Value: ${$event.newValue},
+      Checked Color: ${$event.starRating.checkedcolor},
+      Unchecked Color: ${$event.starRating.uncheckedcolor}`);
   }
 
 
