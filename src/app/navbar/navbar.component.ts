@@ -214,10 +214,9 @@ filteredOptions: Observable<string[]>;
  onSearch(option){
    this.courseService.searchCourse(option).subscribe(res=> {
      console.log(option)
-     this.searchCourse = res;
-     this.router.navigateByUrl('/searchcourses')
      this.courseService.sCourse.emit(res);
-   })
+    });
+   this.router.navigateByUrl('/searchcourses')
  }
 
  search(){

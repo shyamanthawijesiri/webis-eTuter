@@ -16,7 +16,7 @@
     <div style="position: absolute; bottom: -120px;  right: 70px;"  >
 
       <img src="{{course.url}}" class=" z-depth-5" alt="1"   ><br>
-      <button mdbBtn type="button" gradient="blue" rounded="true"  block="true" mdbWavesEffect style="margin-top: 5px;">Enroll</button>
+      <button *ngIf="userLoggedIn"  mdbBtn type="button" gradient="blue" rounded="true"  block="true" mdbWavesEffect style="margin-top: 5px;" (click)="onRegisterCourse()">Enroll</button>
     </div>
 
   </div>

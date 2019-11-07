@@ -65,7 +65,7 @@ registerUserToCourse(course, id: string){
 
 
    //headers.append('Authorization',localStorage.getItem('id_token'));
-  return this.http.post('http://localhost:3000/course/registerCourse/' + id, course, httpOption).pipe(map((res: any) => res));
+  return this.http.post('http://localhost:3000/course/registerCourse/' + id, course,httpOption).pipe(map((res: any) => res));
 
 
 }
