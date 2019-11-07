@@ -27,11 +27,26 @@
           <img [src]="card.url" alt="Card image cap" style="height: 150px; border: none;" >
           <mdb-card-body>
             <mdb-card-title>
-              <h4>{{card.name}}</h4>
+              <h4 >{{card.name | shorten}}</h4>
             </mdb-card-title>
-            <p>{{card.description | shorten}}</p>
+            <p>{{card.author }}</p>
           </mdb-card-body>
         </mdb-card>
+
+
+
+
+
+         <!-- Card -->
+
+            <!-- Card -->
+
+
+
+
+
+
+
       </div>
     </mdb-carousel-item>
   </mdb-carousel>
@@ -60,12 +75,13 @@
         <mdb-card-body cascade="true">
           <!--Card content-->
           <!--Title-->
-          <h4 class="card-title">
-            <strong>{{course.name}}</strong>
-          </h4>
-
+          <h5 class="card-title">
+            {{course.name | topRateShorten}}
+          </h5>
+          <star-rating [value]="course.rating" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
           <mdb-card-text>
-           <p>{{course.description | shorten}}
+           <!-- <p>{{course.description | shorten}} -->
+              <P>Author: {{course.author}}</P>
           </mdb-card-text>
 
 

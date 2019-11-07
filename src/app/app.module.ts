@@ -51,6 +51,7 @@ import { AddAdminComponent } from './super-admin/add-admin/add-admin.component';
 import { AllAdminComponent } from './super-admin/all-admin/all-admin.component';
 import { AllStudentComponent } from './admin/all-student/all-student.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
+import { TopRateShortenPipe } from './pipes/top-rate-shorten.pipe';
 
 
 export function tokenGetter() {
@@ -102,7 +103,8 @@ let config = new AuthServiceConfig([
     AddAdminComponent,
     AllAdminComponent,
     AllStudentComponent,
-    SearchCourseComponent
+    SearchCourseComponent,
+    TopRateShortenPipe
   ],
   imports: [
     BrowserModule,

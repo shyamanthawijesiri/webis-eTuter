@@ -6,7 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ShortenPipe implements PipeTransform {
 
   transform(value: any): any {
-    return value.substr(0, 80) + '...';
+    if(value.length <= 60){
+      return value;
+    }
+    return value.substr(0, 60) + '...';
   }
 
 }
