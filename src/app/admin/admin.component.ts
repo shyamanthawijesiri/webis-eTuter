@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
   size: number;
-  constructor() { }
+  role: string;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.role = this.activatedRoute.snapshot.data['role'];
+    //console.log(this.role)
   }
 
   receiveSize($event) {

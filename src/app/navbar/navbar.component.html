@@ -30,34 +30,12 @@
     <!-- Links -->
 
     <!-- Search form -->
-    <form >
       <div >
-        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="searchValue" name="searchValue"> -->
 
-
-        <!-- <form >
-          <mat-form-field>
-
-
-              <div class="col-6">
-
-                <input type="text"  aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" style="border:none;width: 100%;">
-                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option"  (click)="onSearch(option)"  >
-                    {{option}}
-                  </mat-option>
-                 </mat-autocomplete>
-
-              </div>
-
-
-
-          </mat-form-field>
-        </form> -->
-        <form class="example-form" style="margin-top: 10px;">
+        <form class="example-form" style='max-height: 50px;' >
             <mat-form-field class="example-full-width">
               <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
+              <mat-autocomplete #auto="matAutocomplete" style="margin-top: 5px;" >
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="onSearch(option)">
                   {{option}}
                 </mat-option>
@@ -66,7 +44,7 @@
           </form>
 
       </div>
-    </form>
+
 
     <div class="btn-group" role="group" aria-label="Basic example">
         <!-- <button *ngIf="!userLoggedIn" mdbBtn type="button" color="success" outline="true" class="waves-light" data-toggle="modal" data-target="#signinModalForm" (click)="login.show()" mdbWavesEffect> Sign In</button> -->
@@ -103,7 +81,7 @@
 <!-- -------------------------------------------------login modal ------------------------------------------->
 
 
-<div mdbModal #login="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+<div mdbModal  #login="mdbModal" class="modal fade top" id="frameModalTop1" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <!--Content-->

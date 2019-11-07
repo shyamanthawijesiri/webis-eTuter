@@ -79,11 +79,11 @@ export class SettingComponent implements OnInit {
     this.userService.uploadImage(this.selectedFile,this.pass.id).subscribe(res=>{
       if(res.state){
         console.log('success')
+        window.location.reload();
       }
     });
 
-    console.log('heool')
-   // window.location.reload();
+
   }
 
   changePassword(){

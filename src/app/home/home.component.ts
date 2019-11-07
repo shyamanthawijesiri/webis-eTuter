@@ -9,6 +9,7 @@ import { CourseService } from '../services/course.service';
 export class HomeComponent implements OnInit {
 
   topCourse: any;
+  upCommingCourse: any;
 
   constructor(private courseService: CourseService) { }
 
@@ -22,9 +23,15 @@ export class HomeComponent implements OnInit {
     return R;
   }
   ngOnInit() {
-    this.courseService.getFullCourse().subscribe(res =>{
-      this.topCourse = res;
+    // this.courseService.getFullCourse().subscribe(res =>{
+    //   this.topCourse = res;
+    //   this.slides = this.chunk(res, 4);
+    // });
+
+    this.courseService.getNullPermissionCourse().subscribe(res =>{
+      this.upCommingCourse = res;
       this.slides = this.chunk(res, 4);
+      console.log(res);
     });
   }
 }

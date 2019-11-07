@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CourseService } from '../services/course.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingComponent } from 'ng-starrating';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-course-video',
@@ -16,9 +17,11 @@ export class CourseVideoComponent implements OnInit {
   url: any;
   name: string;
   vidName:string;
+  pass: any;
 
   constructor(private a: DomSanitizer,
               private courseService: CourseService,
+              private userService: UserService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -38,6 +41,8 @@ export class CourseVideoComponent implements OnInit {
       this.url = this.a.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+ res['firstVideoId'] +'?enablejsapi=1');
     })
 
+   this.pass = this.userService.loadToken();
+
   }
 
   setVideo(id,name,vidname){
@@ -50,13 +55,30 @@ export class CourseVideoComponent implements OnInit {
   val
 
   onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
-    this.val = $event.oldValue
-    console.log(this.val)
-    alert(`Old Value:${$event.oldValue},
+    const rate = {
+      courseId: this.courseId.id,
+      star:  $event.newValue,
+      userId: this.pass.id
+    }
 
-      New Value: ${$event.newValue},
-      Checked Color: ${$event.starRating.checkedcolor},
-      Unchecked Color: ${$event.starRating.uncheckedcolor}`);
+    console.log(this.val)
+
+    this.courseService.rateCourse(rate).subscribe((res:any) =>{
+       if(res.state){
+         console.log('success')
+         console.log(res)
+
+       }else{
+        console.log(res)
+
+         console.log('failed rate')
+       }
+    })
+    // alert(`Old Value:${$event.oldValue},
+
+    //   New Value: ${$event.newValue},
+    //   Checked Color: ${$event.starRating.checkedcolor},
+    //   Unchecked Color: ${$event.starRating.uncheckedcolor}`);
   }
 
 

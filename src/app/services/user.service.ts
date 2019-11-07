@@ -19,9 +19,15 @@ export class UserService {
   }
 // regiser admin
  registerAdmin(user) {
-  let headers = new HttpHeaders();
-  headers.append('Content-Type', 'application/json');
-  return this.http.post('http://localhost:3000/users/registerAdmin',user,{headers:headers}).pipe(map((res:any)=>res));
+  // let headers = new HttpHeaders();
+  // headers.append('Content-Type', 'application/json');
+  const httpOption ={
+    headers: new HttpHeaders({
+      'Content-type':'application/json',
+      'Authorization' : localStorage.getItem('id_token')
+  })
+}
+  return this.http.post('http://localhost:3000/users/registerAdmin',user,httpOption).pipe(map((res:any)=>res));
 }
 
   //login user

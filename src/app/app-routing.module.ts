@@ -20,7 +20,9 @@ const routes: Routes = [
   {path: 'displaycourses/course-content/:id', component: CourseContentComponent},
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
   {path: 'contentProvider', component: ContentproviderComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent,data:{
+    role: 'admin'
+  }},
   {path: 'student', component: StudentComponent},
   {path: ':id/coursevideo', component: CourseVideoComponent},
   {path: 'superAdmin', component: SuperAdminComponent},

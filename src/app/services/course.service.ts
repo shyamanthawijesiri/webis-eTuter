@@ -104,6 +104,12 @@ giveRate(id: string, rate){
 searchCourse(value){
   return this.http.get('http://localhost:3000/course/search/' + value);
 }
+
+rateCourse(rate){
+  console.log(rate)
+  return this.http.post('http://localhost:3000/course/rating' , rate).pipe(map((res:any)=>res));;
+}
+
 // course image
 // uploadCourseImg(selectedFile: File){
 //   const fd = new FormData();
