@@ -78,7 +78,7 @@
           <h5 class="card-title">
             {{course.name | topRateShorten}}
           </h5>
-          <star-rating [value]="course.rating" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
+          <star-rating [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
           <mdb-card-text>
            <!-- <p>{{course.description | shorten}} -->
               <P>Author: {{course.author}}</P>
