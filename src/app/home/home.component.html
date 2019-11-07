@@ -25,12 +25,19 @@
       <div class="col-md-3" [ngClass]="{'d-none d-md-block': cardIndex !== 0}" *ngFor="let card of item; let cardIndex = index">
         <mdb-card class="my-1" style="width: 300px; height: 300px;"  >
           <img [src]="card.url" alt="Card image cap" style="height: 150px; border: none;" >
-          <mdb-card-body>
+          <mdb-card-body style="max-height: 91px;">
             <mdb-card-title>
-              <h4 >{{card.name | shorten}}</h4>
+              <h5 >{{card.name | shorten}}</h5>
             </mdb-card-title>
-            <p>{{card.author }}</p>
+
           </mdb-card-body>
+          <div style="max-height: 60px; background-color: grey; margin-top: 17px;">
+
+
+
+            <P style="margin-left: 20px; color:white">Author: {{card.author}}</P>
+
+          </div>
         </mdb-card>
 
 
@@ -60,7 +67,7 @@
       </div>
       <hr>
   <div class="row" >
-    <div class="col-md-2" *ngFor="let course of upCommingCourse">
+    <div class="col-md-2" *ngFor="let course of topCourse ">
       <!--Card-->
       <mdb-card cascade="true" wider="true" style="height: 300px;margin-top: 50px;">
 
@@ -79,14 +86,15 @@
             {{course.name | topRateShorten}}
           </h5>
           <star-rating [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
-          <mdb-card-text>
-           <!-- <p>{{course.description | shorten}} -->
-              <P>Author: {{course.author}}</P>
-          </mdb-card-text>
+
 
 
 
         </mdb-card-body>
+        <hr>
+            <mdb-card-text >
+              <P style="margin-left: 20px;;">Author: {{course.author}}</P>
+            </mdb-card-text>
         <!--/.Card content-->
 
       </mdb-card>

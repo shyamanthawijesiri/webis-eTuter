@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
   topCourse: any;
   upCommingCourse: any;
+  topRateCourse: any;
 
   constructor(private courseService: CourseService) { }
 
@@ -32,6 +33,11 @@ export class HomeComponent implements OnInit {
     this.courseService.getNullPermissionCourse().subscribe(res =>{
       this.upCommingCourse = res;
       this.slides = this.chunk(res, 4);
+      console.log(res);
+    });
+    this.courseService.getTopRate().subscribe(res =>{
+      console.log('top rate')
+      this.topCourse = res;
       console.log(res);
     });
   }

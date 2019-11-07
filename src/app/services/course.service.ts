@@ -82,6 +82,11 @@ givePermission(permission, id: string){
 giveRate(id: string, rate){
   return this.http.put('http://localhost:3000/course/rating/' + id, rate).pipe(map((res: any) => res));
 }
+getTopRate(){
+
+  return this.http.get('http://localhost:3000/course/highRated' );
+
+}
  rating = new EventEmitter<string>();
 
 
