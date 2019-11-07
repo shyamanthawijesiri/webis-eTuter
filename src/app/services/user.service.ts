@@ -72,14 +72,22 @@ export class UserService {
 
 
   //image upload
-  uploadImage(selectedFile: File,id: string){
+  // uploadImage(selectedFile: File,id: string){
+  //   console.log('hi')
+  //   const fd = new FormData();
+  //   fd.append('image', selectedFile, selectedFile.name);
+  //   this.http.post<any>('http://localhost:3000/users/uploadUserImage/'+id,fd).pipe(map((res:any)=>res));
+
+
+
+  // }
+
+  uploadImage(selectedFile:File, id: string){
     const fd = new FormData();
     fd.append('image', selectedFile, selectedFile.name);
-    this.http.post('http://localhost:3000/users/uploadUserImage/'+id,fd).pipe(map((res:any)=>res))
+    return this.http.post('http://localhost:3000/users/uploadUserImage/'+ id, fd).pipe(map((res:any)=>res));
+   }
 
-
-
-  }
   uploadImg = new EventEmitter<string>( );
 
 

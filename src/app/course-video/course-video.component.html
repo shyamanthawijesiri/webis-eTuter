@@ -35,6 +35,92 @@
 </div>
 <hr>
 
+<nav style="margin-top: -17px;">
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Courese OverView</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Discussion</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="container">
+
+      <div class="row">
+        <div class="col">
+
+          <div class="row">
+            <h3>Author</h3><br>
+
+          </div>
+          <div class="row">
+           <p> {{course.author}}</p>
+
+          </div>
+        </div>
+
+
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+
+          <div class="row">
+            <h3>Description</h3><br>
+
+          </div>
+          <div class="row">
+            <p>  {{course.description}}</p>
+
+          </div>
+        </div>
+
+
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+
+          <div class="row">
+            <h3>Catergory</h3><br>
+
+          </div>
+          <div class="row">
+            <div class="col">
+
+              <p style="margin-left: -15px;"> Main Catergory :  {{course.catergory}}</p>
+              <p style="margin-left: -15px;"> Sub Catergory :  {{course.subCatergory}}</p>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+
+          <div class="row">
+            <h3>Course Level</h3><br>
+
+          </div>
+          <div class="row">
+             {{course.skillLevel}}
+
+          </div>
+        </div>
+
+
+      </div>
+      <hr>
+
+    </div>
+
+
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+</div>
+
 <app-footer></app-footer>
 
 <!-- <ul *ngFor="let vid of videos;">
