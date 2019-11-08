@@ -1,6 +1,6 @@
 <div class="admin">
+  <h3 class="text-center"> Admins</h3>
     <div class="row" >
-      <h3 class="text-center"> Admins</h3>
         <div class="col-md-3" *ngFor="let ad of allAdmins" >
          <!-- Card -->
           <mdb-card >
@@ -25,7 +25,7 @@
                 </mdb-card-text>
                 <div class="row">
                   <div class="col">
-                    <button mdbBtn type="button"  color="danger" outline="true" size="sm" mdbWavesEffect (click)="onDeleteAd(ad._id)">Delete</button>
+                    <button mdbBtn type="button"  color="danger" outline="true" size="sm" mdbWavesEffect (click)="onDelete(ad._id)">Delete</button>
                   </div>
                 </div>
               </mdb-card-body>
@@ -36,8 +36,8 @@
 
 </div>
 <div class="superAdmin">
+  <h3 class="text-center"> Super Admins</h3>
     <div class="row" >
-        <h3 class="text-center"> Super Admins</h3>
         <div class="col-md-3" *ngFor="let sad of allSuperAdmins" >
          <!-- Card -->
           <mdb-card >

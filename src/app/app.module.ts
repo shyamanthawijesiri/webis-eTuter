@@ -21,6 +21,7 @@ import { MatInputModule,
 
 import { SocialLoginModule, AuthServiceConfig, LoginOpt } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { AuthGuard } from './guard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -52,6 +53,7 @@ import { AllAdminComponent } from './super-admin/all-admin/all-admin.component';
 import { AllStudentComponent } from './admin/all-student/all-student.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
 import { TopRateShortenPipe } from './pipes/top-rate-shorten.pipe';
+import { ContentShortenPipe } from './pipes/content-shorten.pipe';
 
 
 export function tokenGetter() {
@@ -104,7 +106,8 @@ let config = new AuthServiceConfig([
     AllAdminComponent,
     AllStudentComponent,
     SearchCourseComponent,
-    TopRateShortenPipe
+    TopRateShortenPipe,
+    ContentShortenPipe
   ],
   imports: [
     BrowserModule,
@@ -137,7 +140,8 @@ let config = new AuthServiceConfig([
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

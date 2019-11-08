@@ -9,7 +9,7 @@
         <hr style="background-color: white">
         <!-- <p id="sub-name" class="animated bounce infinite">{{course.subCatergory | uppercase}}</p> -->
         <p></p>
-        <p>{{course.description}}</p>
+        <p>{{course.description | contentShorten}}</p>
         <p>{{course.author}}</p>
       </div>
     </div>
@@ -23,29 +23,14 @@
 </div>
 <hr>
 <h1 class="text-center" style="color: black">Topics</h1>
-<ul type="none"  class=" topic">
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-  <li>Topic 1</li>
-  <hr>
-</ul>
+<div class=" topic">
+
+  <ul type="none"   *ngFor="let course of course.topics">
+    <li>{{course.topic}}</li>
+    <hr>
+
+  </ul>
+
+</div>
 <hr>
 <app-footer></app-footer>

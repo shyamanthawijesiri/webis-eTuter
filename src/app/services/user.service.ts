@@ -134,7 +134,7 @@ export class UserService {
     return this.http.get('http://localhost:3000/users/contentProviders')
   }
 
-  //delete content provider and student
+  //delete content provider and student and admins
   deleteCP(id: string){
 
     const httpOption ={
@@ -153,8 +153,8 @@ export class UserService {
   getAllAdmin(){
     return this.http.get('http://localhost:3000/users/admins');
   }
-  getAllSupperAdmin(){
-    return this.http.get('http://localhost:3000/users/supperadmins');
+  getAllSuperAdmin(){
+    return this.http.get('http://localhost:3000/users/superAdmins');
   }
 
   // get conten providers courses

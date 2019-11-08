@@ -9,6 +9,7 @@ import { StudentComponent } from './student/student.component';
 import { CourseVideoComponent } from './course-video/course-video.component';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
@@ -24,7 +25,9 @@ const routes: Routes = [
     role: 'admin'
   }},
   {path: 'student', component: StudentComponent},
-  {path: ':id/coursevideo', component: CourseVideoComponent},
+  {path: ':id/coursevideo', component: CourseVideoComponent,
+   canActivate: [AuthGuard]
+  },
   {path: 'superAdmin', component: SuperAdminComponent},
   {path: 'studentprofile/:id',component: StudentComponent },
   {path: 'searchcourses',component:SearchCourseComponent  }
