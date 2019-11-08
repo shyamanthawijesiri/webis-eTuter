@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 import { SubcatergoryService } from 'src/app/services/subcatergory.service';
 import { CatergoryService } from 'src/app/services/catergory.service';
 import { CourseService } from 'src/app/services/course.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { UserService } from 'src/app/services/user.service';
@@ -21,11 +21,13 @@ export class AddcourseComponent implements OnInit {
   fileName = 'Choose File';
   apiKey = 'AIzaSyARlqyYi6ockihl0Qi5MTYO3qjQVwmpfsI';
 
-    contentForm: FormGroup;
+  contentForm: FormGroup;
 
   user: any;
   pass: any;
   loggedIn = false;
+
+
 
   constructor(private fb: FormBuilder,
               private subCatergoryService: SubcatergoryService,
@@ -168,7 +170,7 @@ export class AddcourseComponent implements OnInit {
   onSubmit(){
     this.contentForm.get('author').setValue(this.pass.name);
     this.contentForm.get('authorId').setValue(this.pass.id);
-   // this.courseService.uploadCourseImg(this.selectedFile);
+ //  this.courseService.uploadCourseImg(this.selectedFile);
     this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
       if(res.state){
         console.log('course upload')
@@ -199,8 +201,11 @@ export class AddcourseComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
   }
-
+  uploaded = [[],[]]
+  uploadedbar = [[],[]]
   uploadVideo(files, i: number, m: number) {
+    this.uploadedbar[i][m]= true;
+    console.log('upload')
     let headers = {
       headers: new HttpHeaders()
         .set('authorization', 'Bearer ' + localStorage.getItem('token'))
@@ -211,14 +216,26 @@ export class AddcourseComponent implements OnInit {
     this.http.post(url, formData, headers).subscribe(res => {
       console.log(res);
       console.log(res['id']);
-      // (this.topic.at(i).get('videos') as FormArray).at(k).setValue([res['id']]);
+      this.uploaded[i][m]= true;
+      this.uploadedbar[i][m]= false;
+
       (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
       if(i === 0 && m === 0){
         this.contentForm.get('firstVideoId').setValue(res['id'])
 
       }
+    //  (this.topic.at(i).get('videos') as FormArray).at(k).setValue([res['id']]);
     });
 
+
+
+
+    console.log(this.uploaded)
+
+  }
+
+  onUploaded(i,m){
+    this.uploadedbar[i][m]= false;
   }
 
   // onFileSelected(event){

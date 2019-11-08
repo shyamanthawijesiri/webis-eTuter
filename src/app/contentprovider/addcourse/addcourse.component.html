@@ -167,8 +167,11 @@
                                           <input placeholder='Video Name' formControlName="videoName" class="form-control" >
                                         </div>
                                            <input #f type="file" accept="video/*">
-                                           <button type="button" (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;">Upload</button>
-
+                                           <button type="button" (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;" [disabled]="uploaded[i][m]">Upload</button>
+                                           <!-- <button  (click)="onUploaded(i,m)">uploaded</button> -->
+                                           <div *ngIf="uploadedbar[i][m]" class="progress">
+                                              <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                            </div>
                                            <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
                                       </div>
                                   </div>
