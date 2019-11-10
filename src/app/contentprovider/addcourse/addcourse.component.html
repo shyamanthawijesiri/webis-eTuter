@@ -172,6 +172,7 @@
                                            <div *ngIf="uploadedbar[i][m]" class="progress">
                                               <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                                             </div>
+                                            <button type="button" (click)="onUploaded(i,m)">uploadede</button>
                                            <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
                                       </div>
                                   </div>
@@ -214,7 +215,7 @@
           <div class="row">
 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-primary" (click)="addTopic()" style="width: 150px; margin-left: 15px;" >Add Topic</button>
+                <button type="button" class="btn btn-outline-primary" (click)="addTopic();" style="width: 150px; margin-left: 15px;" >Add Topic</button>
                 <button type="submit" class = "btn btn-outline-primary"  style="margin-left: 15px; width: 150px;">Save Content</button>
 
               </div>

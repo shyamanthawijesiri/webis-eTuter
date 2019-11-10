@@ -137,4 +137,8 @@ export class AddcatergoryComponent implements OnInit {
     });
   }
 
+  clickme(){
+    console.log(this.whensub)
+  }
+
 }

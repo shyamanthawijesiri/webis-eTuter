@@ -37,10 +37,20 @@ export class AddcourseComponent implements OnInit {
               private http: HttpClient,
               private authService: AuthService)
               { }
-
+udp = [[],[]]
+i=0;
   ngOnInit() {
 
     // google login
+    this.uploaded.push([false])
+    this.uploadedbar.push([false])
+    
+      // for(this.i=0; this.i<5; this.i++ ){
+      //   this.udp.push([false])
+      // }
+     // this.udp[2][0]=false
+      console.log('2d array')
+      console.log(this.udp)
 
     this.authService.authState.subscribe((user) => {
       console.log(user);
@@ -140,6 +150,8 @@ export class AddcourseComponent implements OnInit {
       files : new FormArray([new FormControl('',Validators.required)])
     })
     );
+   this.uploaded.push([false])
+   this.uploadedbar.push([false])
     // ((this.topic.controls[0] as FormGroup).get('videos') as FormArray).push(new FormControl('HELLO',Validators.required));
 
   }
@@ -216,8 +228,8 @@ export class AddcourseComponent implements OnInit {
     this.http.post(url, formData, headers).subscribe(res => {
       console.log(res);
       console.log(res['id']);
-      this.uploaded[i][m]= true;
-      this.uploadedbar[i][m]= false;
+      // this.uploaded[i][m]= true;
+      // this.uploadedbar[i][m]= false;
 
       (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
       if(i === 0 && m === 0){
@@ -230,14 +242,20 @@ export class AddcourseComponent implements OnInit {
 
 
 
-    console.log(this.uploaded)
+   // console.log(this.uploaded)
 
   }
 
   onUploaded(i,m){
     this.uploadedbar[i][m]= false;
   }
-
+  // j=1;
+  // y=0;
+  // testClicked(){
+  //   console.log(this.j)
+  //   this.uploaded[this.j][this.y]=false;
+  //   this.j++;
+  // }
   // onFileSelected(event){
   //   this.selectedFile = <File>event.target.files[0];
   //   this.userService.uploadImage(this.selectedFile,this.pass.id);
