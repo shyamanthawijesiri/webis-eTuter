@@ -44,7 +44,7 @@ i=0;
     // google login
     this.uploaded.push([false])
     this.uploadedbar.push([false])
-    
+
       // for(this.i=0; this.i<5; this.i++ ){
       //   this.udp.push([false])
       // }
@@ -228,8 +228,8 @@ i=0;
     this.http.post(url, formData, headers).subscribe(res => {
       console.log(res);
       console.log(res['id']);
-      // this.uploaded[i][m]= true;
-      // this.uploadedbar[i][m]= false;
+       this.uploaded[i][m]= true;
+       this.uploadedbar[i][m]= false;
 
       (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
       if(i === 0 && m === 0){
@@ -246,9 +246,10 @@ i=0;
 
   }
 
-  onUploaded(i,m){
-    this.uploadedbar[i][m]= false;
-  }
+  // onUploaded(i,m){
+  //   this.uploadedbar[i][m]= false;
+  //   this.uploaded[i][m]= true;
+  // }
   // j=1;
   // y=0;
   // testClicked(){
