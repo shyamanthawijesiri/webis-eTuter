@@ -163,6 +163,7 @@ export class AdminNavbarComponent implements OnInit {
    onLogout(){
      this.userService.logout();
      this.user = null;
+     this.router.navigateByUrl('/adminhome')
    }
 
    userDetails(){

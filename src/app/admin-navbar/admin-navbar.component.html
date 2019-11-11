@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-light white fixed-top" [containerInside]="false">
 
     <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active" >Navbar</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/adminhome']" routerLinkActive="router-link-active" >Navbar</a></mdb-navbar-brand>
 
     <!-- Collapsible content -->
     <links>
@@ -10,11 +10,11 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/home']">Home<span class="sr-only">(current)</span></a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/adminhome']">Home<span class="sr-only">(current)</span></a>
         </li>
 
         <!-- Dropdown -->
-        <li class="nav-item dropdown" dropdown>
+        <!-- <li class="nav-item dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
            Catergories<span class="caret"></span></a>
            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu"  >
@@ -24,17 +24,17 @@
             </div>
 
           </div>
-        </li>
+        </li> -->
 
       </ul>
       <!-- Links -->
 
       <!-- Search form -->
-      <form class="form-inline waves-light" mdbWavesEffect>
+      <!-- <form class="form-inline waves-light" mdbWavesEffect>
         <div class="md-form my-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
         </div>
-      </form>
+      </form> -->
 
       <div class="btn-group" role="group" aria-label="Basic example">
           <button *ngIf="!userLoggedIn" mdbBtn type="button" color="success" outline="true" class="waves-light" data-toggle="modal" data-target="#signinModalForm" (click)="login.show()" mdbWavesEffect> Sign In</button>
