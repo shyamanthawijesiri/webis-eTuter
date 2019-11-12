@@ -182,7 +182,7 @@ i=0;
   onSubmit(){
     this.contentForm.get('author').setValue(this.pass.name);
     this.contentForm.get('authorId').setValue(this.pass.id);
- //  this.courseService.uploadCourseImg(this.selectedFile);
+
     this.courseService.Addcourse(this.contentForm.value).subscribe(res =>{
       if(res.state){
         console.log('course upload')
@@ -200,6 +200,8 @@ i=0;
 
       }
     })
+
+    console.log(this.contentForm.value);
 
   }
 

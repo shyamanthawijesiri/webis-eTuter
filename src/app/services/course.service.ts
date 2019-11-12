@@ -47,9 +47,7 @@ courseDetail = new EventEmitter<string>();
 
 //display a full course
 displaycourse(id: string){
-  const course = this.http.get("http://localhost:3000/course/display/"+id);
-  return course;
-
+  return this.http.get("http://localhost:3000/course/display/"+id);
 }
 //user register for a course
 

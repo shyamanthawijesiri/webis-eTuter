@@ -5,6 +5,7 @@ import { CatergoryService } from 'src/app/services/catergory.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 
+
 @Component({
   selector: 'app-updatecourse',
   templateUrl: './updatecourse.component.html',
@@ -15,13 +16,13 @@ export class UpdatecourseComponent implements OnInit {
   updateForm: FormGroup;
   loadedSubcatergory: any;
   loadedCatergory: any;
-  catergory = '';
+  //catergory = '';
   courseId: any;
 
   name:string;
   description:string;
-  mainCatergory:string;
-  subcatregory:string;
+  maincatergory:string;
+  subcatergory:string;
   type:string;
   skillLevel:string;
   duration:string;
@@ -33,18 +34,6 @@ export class UpdatecourseComponent implements OnInit {
               private courseService: CourseService) { }
 
   ngOnInit() {
-
-
-    this.updateForm = this.fb.group({
-      name: [this.name,Validators.required],
-      description: [this.description,Validators.required],
-      catergory: [this.mainCatergory,Validators.required],
-      subCatergory: [this.subCatergoryService,Validators.required],
-      type: [this.type,Validators.required],
-      skillLevel: [this.skillLevel,Validators.required],
-      duration: [this.duration, Validators.required],
-    });
-
     this.courseId = {
       id: this.activatedRoute.snapshot.paramMap.get('id')
     };
@@ -53,6 +42,35 @@ export class UpdatecourseComponent implements OnInit {
         this.courseId.id = params['id'];
       }
     );
+
+    this.courseService.displaycourse(this.courseId.id).subscribe(res => {
+      console.log(res);
+      this.name = res['name'];
+      this.description = res['description'];
+      this.maincatergory = res['catergory'];
+      this.subcatergory = res['subCatergory'];
+      this.type = res['type'];
+      this.skillLevel = res['skillLevel'];
+      this.duration = res['duration'];
+
+      console.log(this.name)
+      console.log(this.subcatergory)
+      console.log(this.maincatergory)
+
+
+    })
+
+    this.updateForm = this.fb.group({
+      name: [this.name,Validators.required],
+      description: [this.description,Validators.required],
+      catergory: [this.maincatergory,Validators.required],
+      subCatergory: [this.subcatergory,Validators.required],
+      type: [this.type,Validators.required],
+      skillLevel: [this.skillLevel,Validators.required],
+      duration: [this.duration, Validators.required],
+    });
+
+
 
 
 
@@ -71,13 +89,17 @@ export class UpdatecourseComponent implements OnInit {
 
 
   onUpdate(){
-    this.courseService.updateCourse(this.updateForm.value,this.courseId.id).subscribe(res => {
-      if(res.state){
-        console.log('updated')
-      }else{
-        console.log('update failed')
-      }
-    })
+    // this.courseService.updateCourse(this.updateForm.value,this.courseId.id).subscribe(res => {
+    //   if(res.state){
+    //     console.log('updated')
+    //   }else{
+    //     console.log('update failed')
+    //   }
+    // })
+
+    console.log(this.maincatergory);
+    console.log(this.subcatergory);
+    console.log(this.duration)
 
   }
 

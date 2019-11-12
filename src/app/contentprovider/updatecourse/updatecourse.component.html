@@ -2,7 +2,7 @@
 <div style="width: 90%;margin:auto">
 
 
-  <form style="margin-top: 100px;" [formGroup]="updateForm" (ngSubmit)="onUpdate()" >
+  <form style="margin-top: 100px;"  >
 
     <div class="row">
       <div class="col-12">
@@ -14,7 +14,7 @@
         <div class="col-12">
           <h6>Course Title</h6>
           <mat-form-field >
-            <input matInput placeholder="title"  formControlName="name">
+            <input matInput placeholder="title"  [(ngModel)]="name" name="name">
           </mat-form-field>
 
         </div>
@@ -26,7 +26,7 @@
         <div class="col-12">
           <h6>Course Description</h6>
           <mat-form-field >
-            <textarea matInput placeholder="description" formControlName="description"></textarea>
+            <textarea matInput placeholder="description" [(ngModel)]="description" name="description"></textarea>
           </mat-form-field>
         </div>
 
@@ -37,7 +37,7 @@
           <h6>Catergory</h6>
 
               <mat-form-field  style="margin-bottom:20px;">
-                <mat-select [(value)]="catergory" name="subCatergory" formControlName="catergory" placeholder="select catergory">
+                <mat-select [(value)]="catergory" name="subCatergory" [(ngModel)]="maincatergory" placeholder="select catergory">
                   <mat-option *ngFor="let catergory of loadedCatergory; let i=index;" [value]="catergory.name">{{catergory.name}}</mat-option>
 
                 </mat-select>
@@ -48,8 +48,8 @@
             <h6>Sub-Catergory</h6>
 
               <mat-form-field style="margin-bottom:20px;">
-                <mat-select formControlName="subCatergory" placeholder="select sub-catergory">
-                  <mat-option *ngFor="let subcatergory of loadedSubcatergory | subcatergory:catergory; let i=index;" [value]="subcatergory.name"  >{{subcatergory.name}}</mat-option>
+                <mat-select [(ngModel)]="subcatergory" placeholder="select sub-catergory" name="subcatregory">
+                  <mat-option *ngFor="let subcatergory of loadedSubcatergory | subcatergory:maincatergory; let i=index;" [value]="subcatergory.name"  >{{subcatergory.name}}</mat-option>
 
                 </mat-select>
               </mat-form-field>
@@ -61,7 +61,7 @@
           <h6>Course Type</h6>
 
           <mat-form-field>
-            <mat-select placeholder="Select" formControlName="type">
+            <mat-select placeholder="Select" [(ngModel)]="type" name="type">
               <mat-option value="paid">paid</mat-option>
               <mat-option value="free">free</mat-option>
 
@@ -72,7 +72,7 @@
           <!-- skill level -->
           <h6>Skill Level</h6>
           <mat-form-field>
-            <mat-select placeholder="Select" formControlName="skillLevel">
+            <mat-select placeholder="Select" [(ngModel)]="skillLevel" name="skillLevel">
               <mat-option value="beginner">beginner</mat-option>
               <mat-option value="intermediate">intermediate</mat-option>
               <mat-option value="advance">advance</mat-option>
@@ -85,7 +85,7 @@
           <h6>Duration</h6>
 
           <mat-form-field>
-            <mat-select placeholder="Select" formControlName="duration" >
+            <mat-select placeholder="Select" [(ngModel)]="duration" name="duration">
               <mat-option value="lessmonth">lessmonth</mat-option>
               <mat-option value="1-3month">1-3month</mat-option>
               <mat-option value="3+month">3+month</mat-option>
