@@ -32,6 +32,7 @@ const routes: Routes = [
   },
   {path: 'superAdmin', component: SuperAdminComponent},
   {path: 'studentprofile/:id',component: StudentComponent },
+  {path: 'contentproviderprofile/:id',component: ContentproviderComponent },
   {path: 'searchcourses',component:SearchCourseComponent  },
   {path: 'adminhome',component:AdminHomeComponent  },
   {path: 'contentProvider/update/:id',component:UpdatecourseComponent  },

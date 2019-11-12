@@ -60,15 +60,15 @@ export class UpdatecourseComponent implements OnInit {
 
     })
 
-    this.updateForm = this.fb.group({
-      name: [this.name,Validators.required],
-      description: [this.description,Validators.required],
-      catergory: [this.maincatergory,Validators.required],
-      subCatergory: [this.subcatergory,Validators.required],
-      type: [this.type,Validators.required],
-      skillLevel: [this.skillLevel,Validators.required],
-      duration: [this.duration, Validators.required],
-    });
+    // this.updateForm = this.fb.group({
+    //   name: [this.name,Validators.required],
+    //   description: [this.description,Validators.required],
+    //   catergory: [this.maincatergory,Validators.required],
+    //   subCatergory: [this.subcatergory,Validators.required],
+    //   type: [this.type,Validators.required],
+    //   skillLevel: [this.skillLevel,Validators.required],
+    //   duration: [this.duration, Validators.required],
+    // });
 
 
 
@@ -89,17 +89,26 @@ export class UpdatecourseComponent implements OnInit {
 
 
   onUpdate(){
-    // this.courseService.updateCourse(this.updateForm.value,this.courseId.id).subscribe(res => {
-    //   if(res.state){
-    //     console.log('updated')
-    //   }else{
-    //     console.log('update failed')
-    //   }
-    // })
+      const course = {
+        name: this.name,
+        description: this.description,
+        catergory : this.maincatergory,
+        subCatergory: this.subcatergory,
+        type: this.type,
+        skillLevel: this.skillLevel,
+        duration: this.duration
+      }
 
-    console.log(this.maincatergory);
-    console.log(this.subcatergory);
-    console.log(this.duration)
+      this.courseService.updateCourse(course,this.courseId.id).subscribe(res => {
+      if(res.state){
+        console.log('updated')
+        window.location.reload();
+      }else{
+        console.log('update failed')
+      }
+    })
+
+
 
   }
 

@@ -31,9 +31,9 @@
 
               <button  mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" mdbWavesEffect [routerLink]="['/contentProvider','update',course._id]" routerLinkActive="router-link-active" >Update</button>
             </div>
-            <div class="col-6">
+            <div class="col-6" *ngIf="admin">
 
-              <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" (click)="onDelete()" >Remove</button>
+              <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" (click)="onDelete(course._id)" >Remove</button>
             </div>
        </div>
 
@@ -73,6 +73,16 @@
       <div style="max-height: 50px; margin-bottom: 10px;margin: auto; ">
 
 
+       <div class="row">
+          <div class="col-6">
+
+              <button mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" mdbWavesEffect [routerLink]="['/contentProvider','update',course._id]" routerLinkActive="router-link-active" >Update</button>
+            </div>
+            <div class="col-6"  *ngIf="admin">
+
+              <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" (click)="onDelete(course._id)" >Remove</button>
+            </div>
+       </div>
 
         </div>
     </mdb-card>
@@ -109,14 +119,17 @@
 
       <div style="max-height: 50px; margin-bottom: 10px;margin: auto; ">
 
-        <div class="col-6">
 
-          <button mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" >Update</button>
-        </div>
-        <div class="col-6">
+       <div class="row">
+          <div class="col-6">
 
-          <button mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" >Remove</button>
-        </div>
+              <button   mdbBtn type="button" color="primary" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" mdbWavesEffect [routerLink]="['/contentProvider','update',course._id]" routerLinkActive="router-link-active" >Update</button>
+            </div>
+            <div class="col-6"  *ngIf="admin">
+
+              <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect style="margin-bottom: 10px;" (click)="onDelete(course._id)" >Remove</button>
+            </div>
+       </div>
 
         </div>
     </mdb-card>
@@ -129,31 +142,3 @@
 
 
 
-<!-- --------------------------------------------------udpate model----------------------------------------------------------------------- -->
-
-<div mdbModal #update="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <!--Content-->
-    <div class="modal-content form-elegant">
-      <!--Header-->
-      <div class="modal-header text-center">
-        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
-          <strong>Update Course</strong>
-        </h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="update.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <!--Body-->
-      <div class="modal-body">
-        <!--Body-->
-        <app-updatecourse></app-updatecourse>
-
-      </div>
-      <!--Footer-->
-
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
