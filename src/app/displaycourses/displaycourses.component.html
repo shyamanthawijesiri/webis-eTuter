@@ -85,29 +85,33 @@
           <div class="col-md-3" *ngFor="let course of loadedCourseVideosub | type:paid:free | skillLevel:beginner:advance:intermediate | duration:lessmonth:less3month:more3month" >
 
 
-              <mdb-card >
+
+                <mdb-card >
                   <div class="view rgba-white-slight waves-light" mdbWavesEffect>
                     <!-- Card img -->
-                    <img src="{{course.url}}" alt="Card image cap" >
-                    <a [routerLink]="['/displaycourses','course-content',course._id]" routerLinkActive="router-link-active" >
+                    <img src="{{course.url}}" alt="Card image cap"  style="height: 160px;" >
+                    <a [routerLink]="['/displaycourses','course-content',course._id]">
                       <div class="mask"></div>
                     </a>
+
                   </div>
                   <!--Card content-->
-                  <mdb-card-body>
+                  <mdb-card-body style=" height: 40px;" >
                     <!--Title-->
-                    <mdb-card-title>
-                      <h4>{{course.name | shorten}}</h4>
+                    <mdb-card-title >
+                      <h6>{{course.name | shorten}}</h6>
                     </mdb-card-title>
 
                     <!--Text-->
-                    <mdb-card-text>
-
-                    </mdb-card-text>
-
-                    <star-rating [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
 
                   </mdb-card-body>
+                  <star-rating [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" style="margin-bottom: -20px;margin-left:20px ;"></star-rating>
+                  <div style="max-height: 50px; background-color: grey; margin-top: 17px; ">
+
+
+                      <P style="margin-left: 20px; color:white">Author: {{course.author}}</P>
+
+                    </div>
                 </mdb-card>
           </div>
 

@@ -11,6 +11,7 @@ import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { SearchCourseComponent } from './search-course/search-course.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { UpdatecourseComponent } from './contentprovider/updatecourse/updatecourse.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'studentprofile/:id',component: StudentComponent },
   {path: 'searchcourses',component:SearchCourseComponent  },
   {path: 'adminhome',component:AdminHomeComponent  },
+  {path: 'contentProvider/update/:id',component:UpdatecourseComponent  },
 
 
 

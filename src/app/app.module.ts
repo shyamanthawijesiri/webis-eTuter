@@ -55,6 +55,7 @@ import { SearchCourseComponent } from './search-course/search-course.component';
 import { TopRateShortenPipe } from './pipes/top-rate-shorten.pipe';
 import { ContentShortenPipe } from './pipes/content-shorten.pipe';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { UpdatecourseComponent } from './contentprovider/updatecourse/updatecourse.component';
 
 
 export function tokenGetter() {
@@ -109,7 +110,8 @@ let config = new AuthServiceConfig([
     SearchCourseComponent,
     TopRateShortenPipe,
     ContentShortenPipe,
-    AdminHomeComponent
+    AdminHomeComponent,
+    UpdatecourseComponent
   ],
   imports: [
     BrowserModule,

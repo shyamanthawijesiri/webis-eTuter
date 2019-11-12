@@ -114,7 +114,13 @@ rateCourse(rate){
   console.log(rate)
   return this.http.post('http://localhost:3000/course/rating' , rate).pipe(map((res:any)=>res));;
 }
+ updateCourse(course,id:string){
+  return this.http.put('http://localhost:3000/course/update/'+ id , course).pipe(map((res:any)=>res));;
+ }
 
+ removeCourse(id){
+  return this.http.delete('http://localhost:3000/course/delete/'+ id ).pipe(map((res:any)=>res));;
+ }
 // course image
 // uploadCourseImg(selectedFile: File){
 //   const fd = new FormData();
