@@ -117,7 +117,13 @@ rateCourse(rate){
  }
 
  removeCourse(id){
-  return this.http.delete('http://localhost:3000/course/delete/'+ id ).pipe(map((res:any)=>res));;
+  const httpOption ={
+    headers: new HttpHeaders({
+      'Content-type':'application/json',
+      'Authorization' : localStorage.getItem('id_token')
+  })
+  };
+  return this.http.delete('http://localhost:3000/course/delete/' + id, httpOption ).pipe(map((res:any)=>res));;
  }
 // course image
 // uploadCourseImg(selectedFile: File){
