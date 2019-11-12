@@ -4,9 +4,10 @@ import {Observable} from 'rxjs';
 import {map, startWith, retry} from 'rxjs/operators';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+
 import { CourseService } from '../services/course.service';
 import { UserService } from '../services/user.service';
-
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-navbar',
@@ -39,13 +40,17 @@ searchArr =[];
 myControl = new FormControl();
 unique = [];
 
+
+// error msg
+msg:string;
 filteredOptions: Observable<string[]>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private courseService: CourseService,
               private userService: UserService,
               private router: Router,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              public toastr: ToastrManager) { }
 
   ngOnInit() {
  // login
@@ -143,13 +148,15 @@ filteredOptions: Observable<string[]>;
            });
            console.log('login success')
            this.router.navigateByUrl('/' + this.loginForm.get('role').value);
-
+           this.toastr.successToastr('login succeffuly.', 'Success!');
 
 
 
 
         } else {
           console.log('error login');
+          this.msg = data.msg
+
         }
       });
 
@@ -175,6 +182,7 @@ filteredOptions: Observable<string[]>;
        //this.router.navigateByUrl('/login');
       }else{
         console.log('failed register');
+        this.msg = data.msg;
        //this.router.navigateByUrl('/register');
       }
   });

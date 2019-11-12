@@ -4,6 +4,7 @@ import { CourseService } from '../services/course.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { StarRatingComponent } from 'ng-starrating';
 import { UserService } from '../services/user.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-course-video',
@@ -22,7 +23,8 @@ export class CourseVideoComponent implements OnInit {
   constructor(private a: DomSanitizer,
               private courseService: CourseService,
               private userService: UserService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              public  toastr: ToastrManager) { }
 
   ngOnInit() {
    //  this.videos.push(this.a.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+'Hnh0NtGtSuM'+'?enablejsapi=1'));
@@ -67,11 +69,12 @@ export class CourseVideoComponent implements OnInit {
     this.courseService.rateCourse(rate).subscribe((res:any) =>{
        if(res.state){
          console.log('success')
+         this.toastr.successToastr(res.msg, 'Success!');
          console.log(res)
 
        }else{
         console.log(res)
-
+        this.toastr.warningToastr(res.msg, 'Alert!');
          console.log('failed rate')
        }
     })

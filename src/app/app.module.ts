@@ -7,6 +7,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { RatingModule } from 'ng-starrating';
+import { ToastrModule } from 'ng6-toastr-notifications';
 import { MatInputModule,
   MatCardModule,
   MatButtonModule,
@@ -132,6 +133,7 @@ let config = new AuthServiceConfig([
     MatIconModule,
     BrowserAnimationsModule,
     SocialLoginModule,
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter

@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
-<h1  class= "text-center" style=" font-weight: bold;">{{course.name}}</h1>
+<h1  class= "text-center" style=" font-weight: bold;margin-top: 60px;">{{course.name}}</h1>
 <p >{{name}} : {{vidName}}</p>
 <div class="row">
   <div class="col">
-      <div >
+      <div style="margin-left: 10px;">
           <iframe  id="player" type="text/html" width="100%" height="400" [src]="url" frameborder="0" allowfullscreen ></iframe>
 
         </div>
         <div class="row">
-          <div class="col-sm" style="max-width: 120px;">
-            <p style="margin-top: 8px;">Give A Rate</p>
+          <div class="col-sm" style="max-width: 140px;">
+            <p style="margin-top: 8px;margin-left: 10px;">Give A Rate</p>
 
           </div>
           <div class="col-sm">
-            <star-rating  value="3" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="false" (rate)="onRate($event)"></star-rating>
+            <star-rating  [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="false" (rate)="onRate($event)"></star-rating>
 
           </div>
         </div>
@@ -22,14 +22,14 @@
   <div class="col">
       <div>
 
-          <ul *ngFor="let topic of course.topics">
+          <ul *ngFor="let topic of course.topics" type="disc">
 
-            <div> {{topic.topic}}
+            <li> {{topic.topic}}
               <ul *ngFor="let videos of topic.videos">
 
-                <a (click)="setVideo(videos.video,topic.topic,videos.videoName)">{{videos.videoName}}</a>
+                <a (click)="setVideo(videos.video,topic.topic,videos.videoName)"><mdb-icon fas icon="play-circle"></mdb-icon>{{videos.videoName}}</a>
               </ul>
-            </div>
+            </li>
           </ul>
         </div>
   </div>

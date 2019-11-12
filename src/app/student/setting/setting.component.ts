@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 
 @Component({
@@ -27,7 +28,10 @@ export class SettingComponent implements OnInit {
     // delete course
     delPassword: string;
 
-  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
+  constructor(private userService: UserService,
+              private fb: FormBuilder,
+              private router: Router,
+              public toastr: ToastrManager) { }
 
   ngOnInit() {
 
@@ -65,8 +69,13 @@ export class SettingComponent implements OnInit {
       console.log(data.state);
       if(data.state){
         console.log('update success');
-        window.location.reload();
+        this.toastr.successToastr(data.msg, 'Success!')
+        setTimeout(()=>{
+          window.location.reload();
+     }, 2000);
+
       }else{
+        this.toastr.errorToastr(data.msg, 'Oops!')
         console.log('updata failed');
 
       }
@@ -79,7 +88,12 @@ export class SettingComponent implements OnInit {
     this.userService.uploadImage(this.selectedFile,this.pass.id).subscribe(res=>{
       if(res.state){
         console.log('success')
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!')
+        setTimeout(()=>{
+          window.location.reload();
+     }, 2000);
+      }else{
+        this.toastr.errorToastr(res.msg, 'Oops!')
       }
     });
 
@@ -92,13 +106,14 @@ export class SettingComponent implements OnInit {
       this.passwordMatch = true;
       this.userService.changePassword(this.passwordrestForm.value, this.pass.id).subscribe(res => {
         if(res.state){
-          console.log('change password successfully');
+          this.toastr.successToastr(res.msg, 'Success!')
           console.log(res.msg)
 
         }else{
           console.log('failed to change password');
           console.log(res.msg);
-          this.incorrectPass = res.msg;
+
+          this.toastr.errorToastr(res.msg, 'Oops!')
         }
       })
 
@@ -125,6 +140,7 @@ export class SettingComponent implements OnInit {
 
       }else{
         console.log('error delete')
+        this.toastr.errorToastr(res.msg, 'Oops!')
       }
 
     })

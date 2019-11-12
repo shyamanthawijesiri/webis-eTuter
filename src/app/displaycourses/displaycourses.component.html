@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="row" >
+<div class="row" style="margin-top: 60px;">
   <div class="col-2 grey lighten-4">
       <form style="margin-left:50px;margin-top: 20px;">
         <div class="row">
@@ -33,7 +33,7 @@
   <div class="col-10" >
     <nav class="nav grey lighten-4 py-4" style="margin-left: -10px;">
 
-        <div class="col-sm-2"  *ngFor="let subcourse of loadedSubCourses.re ">
+        <div class="col-sm-2"  *ngFor="let subcourse of loadedSubCourses.re " style="margin-bottom: 10px;">
 
             <a [routerLink]="['/displaycourses',mainCourse.id,subcourse.name]" (click)="onSubCourse(mainCourse.id,subcourse.name) ">{{subcourse.name}}</a>
 
