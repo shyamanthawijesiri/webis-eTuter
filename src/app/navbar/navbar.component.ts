@@ -135,6 +135,8 @@ filteredOptions: Observable<string[]>;
            this.pass = this.userService.loadToken();
            this.userService.getUser(this.pass.id).subscribe(response => {
             this.user = response;
+            console.log('user')
+            console.log(this.user.role)
 
             // if(this.user.role === this.role){
 

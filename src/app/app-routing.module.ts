@@ -22,6 +22,7 @@ const routes: Routes = [
   {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},
   {path: 'displaycourses/course-content/:id', component: CourseContentComponent},
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
+
   {path: 'contentProvider', component: ContentproviderComponent},
   {path: 'admin', component: AdminComponent,data:{
     role: 'admin'
