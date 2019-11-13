@@ -12,30 +12,54 @@ import { SearchCourseComponent } from './search-course/search-course.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { UpdatecourseComponent } from './contentprovider/updatecourse/updatecourse.component';
+import { ContentproviderGuard } from './guard/contentprovider.guard';
+import { AdminGuard } from './guard/admin.guard';
+import { StudentGuard } from './guard/student.guard';
+import { SuperadminGuard } from './guard/superadmin.guard';
 
 
 const routes: Routes = [
 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+
   {path: 'displaycourses', component: DisplaycoursesComponent},
+
   {path: 'displaycourses/:catergory', component: DisplaycoursesComponent},
+
   {path: 'displaycourses/course-content/:id', component: CourseContentComponent},
+
   {path: 'displaycourses/:catergory/:subCatergory', component: DisplaycoursesComponent},
 
-  {path: 'contentProvider', component: ContentproviderComponent},
-  {path: 'admin', component: AdminComponent,data:{
-    role: 'admin'
-  }},
-  {path: 'student', component: StudentComponent},
+  {path: 'contentProvider', component: ContentproviderComponent,
+  canActivate: [ ContentproviderGuard]
+  },
+
+  {path: 'admin', component: AdminComponent,
+  canActivate: [AdminGuard]
+  },
+
+  {path: 'student', component: StudentComponent,
+   canActivate: [StudentGuard]},
+
   {path: ':id/coursevideo', component: CourseVideoComponent,
    canActivate: [AuthGuard]
   },
-  {path: 'superAdmin', component: SuperAdminComponent},
-  {path: 'studentprofile/:id',component: StudentComponent },
-  {path: 'contentproviderprofile/:id',component: ContentproviderComponent },
+
+  {path: 'superAdmin', component: SuperAdminComponent,
+  canActivate: [SuperadminGuard]
+  },
+
+  {path: 'studentprofile/:id',component: StudentComponent,
+  canActivate: [SuperadminGuard] },
+
+  {path: 'contentproviderprofile/:id',component: ContentproviderComponent,
+  canActivate: [SuperadminGuard]},
+
   {path: 'searchcourses',component:SearchCourseComponent  },
+
   {path: 'adminhome',component:AdminHomeComponent  },
+
   {path: 'contentProvider/update/:id',component:UpdatecourseComponent  },
 
 

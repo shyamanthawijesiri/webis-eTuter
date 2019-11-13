@@ -57,6 +57,10 @@ import { TopRateShortenPipe } from './pipes/top-rate-shorten.pipe';
 import { ContentShortenPipe } from './pipes/content-shorten.pipe';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { UpdatecourseComponent } from './contentprovider/updatecourse/updatecourse.component';
+import { StudentGuard } from './guard/student.guard';
+import { AdminGuard } from './guard/admin.guard';
+import { ContentproviderGuard } from './guard/contentprovider.guard';
+import { SuperadminGuard } from './guard/superadmin.guard';
 
 
 export function tokenGetter() {
@@ -147,7 +151,11 @@ let config = new AuthServiceConfig([
       provide: AuthServiceConfig,
       useFactory: provideConfig
     },
-    AuthGuard
+    AuthGuard,
+    StudentGuard,
+    AdminGuard,
+    ContentproviderGuard,
+    SuperadminGuard
   ],
   bootstrap: [AppComponent]
 })
