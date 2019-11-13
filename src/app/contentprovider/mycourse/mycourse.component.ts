@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { CourseService } from 'src/app/services/course.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-mycourse',
@@ -18,7 +19,9 @@ export class MycourseComponent implements OnInit {
   editDisable:boolean = false;
   constructor(private userService: UserService,
               private courseService: CourseService,
-              private activatedRoute: ActivatedRoute,) { }
+              private activatedRoute: ActivatedRoute,
+              public toastr: ToastrManager
+              ) { }
 
   ngOnInit() {
     console.log('my course')
@@ -78,8 +81,13 @@ export class MycourseComponent implements OnInit {
   onDelete(id: string){
     this.courseService.removeCourse(id).subscribe(res => {
       if(res.state){
+        this.toastr.successToastr(res.msg, 'Success!');
         console.log('delete')
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
       }else{
+        this.toastr.errorToastr(res.msg, 'Oops!')
         console.log('delete failed')
       }
     })
