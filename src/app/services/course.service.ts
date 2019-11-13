@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {map} from 'rxjs/operators';
 import {HttpClient,HttpClientModule,HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -16,30 +17,26 @@ sCourse =new EventEmitter<any>();
 
 getCourses(){
  // const course=this.http.get("http://localhost:3000/course/display");
-  const course=this.http.get("http://localhost:3000/catergory/display");
+  return this.http.get(environment.url + '/catergory/display');
 
-  console.log(course);
-  console.log("MMMMMMMMMMMMMMM")
-  return course;
+
+
 
 }
 getFullCourse(){
- return this.http.get('http://localhost:3000/course/display');
+ return this.http.get(environment.url + '/course/display');
 
 }
 getCourseVideos(catergory){
-  const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory);
- // const course=this.http.get("http://localhost:3000/subCatergory/display"+catergory);
+  return this.http.get(environment.url + '/subCatergory/display/'+catergory);
 
-   console.log(course);
-   console.log("MMMMMMMMMMMMMMM")
-   return course;
+
+
 }
 
 getCourseVideossub(catergory,subCatergory){
-  const course=this.http.get("http://localhost:3000/subCatergory/display/"+catergory+"/"+subCatergory);
+  return this.http.get(environment.url + '/subCatergory/display/'+catergory+'/'+subCatergory);
 
-   return course;
 }
 
 courseVideoUpdate = new EventEmitter<string>( );
@@ -47,10 +44,10 @@ courseDetail = new EventEmitter<string>();
 
 //display a full course
 displaycourse(id: string){
-  return this.http.get("http://localhost:3000/course/display/"+id);
+  return this.http.get(environment.url + '/course/display/'+id);
 }
-//user register for a course
 
+// user register for a course
 
 registerUserToCourse(course, id: string){
   const httpOption ={
@@ -59,21 +56,18 @@ registerUserToCourse(course, id: string){
       'Authorization' : localStorage.getItem('id_token')
   })
   };
-  //let headers = new HttpHeaders();
 
-
-   //headers.append('Authorization',localStorage.getItem('id_token'));
-  return this.http.post('http://localhost:3000/course/registerCourse/' + id, course,httpOption).pipe(map((res: any) => res));
+  return this.http.post(environment.url + '/course/registerCourse/' + id, course,httpOption).pipe(map((res: any) => res));
 
 
 }
 
 getNullPermissionCourse(){
-  return this.http.get('http://localhost:3000/course/display/permissionNullCourse');
+  return this.http.get(environment.url + '/course/display/permissionNullCourse');
 }
 
 givePermission(permission, id: string){
-  return this.http.put('http://localhost:3000/course/givePermissionOrNot/' + id, permission).pipe(map((res: any) => res));
+  return this.http.put(environment.url + '/course/givePermissionOrNot/' + id, permission).pipe(map((res: any) => res));
 }
 
 
@@ -82,7 +76,7 @@ givePermission(permission, id: string){
 // }
 getTopRate(){
 
-  return this.http.get('http://localhost:3000/course/highRated' );
+  return this.http.get(environment.url + '/course/highRated' );
 
 }
  rating = new EventEmitter<string>();
@@ -90,30 +84,30 @@ getTopRate(){
 
  Addcourse(course){
 
-  return this.http.post('http://localhost:3000/course/put', course).pipe(map((res:any)=>res));
+  return this.http.post(environment.url + '/course/put', course).pipe(map((res:any)=>res));
 
   }
  courseImgUpload(selectedFile:File, id: string){
   const fd = new FormData();
   fd.append('image', selectedFile, selectedFile.name);
-  return this.http.post('http://localhost:3000/course/uploadCourseImage/'+ id, fd).pipe(map((res:any)=>res));
+  return this.http.post(environment.url + '/course/uploadCourseImage/'+ id, fd).pipe(map((res:any)=>res));
  }
 
  getSubcourses(catergory){
 
-   return this.http.get('http://localhost:3000/subCatergory/display/' + catergory);
+   return this.http.get(environment.url + '/subCatergory/display/' + catergory);
 
 }
 searchCourse(value){
-  return this.http.get('http://localhost:3000/course/search/' + value);
+  return this.http.get(environment.url + '/course/search/' + value);
 }
 
 rateCourse(rate){
   console.log(rate)
-  return this.http.post('http://localhost:3000/course/rating' , rate).pipe(map((res:any)=>res));;
+  return this.http.post(environment.url + '/course/rating' , rate).pipe(map((res:any)=>res));;
 }
  updateCourse(course,id:string){
-  return this.http.put('http://localhost:3000/course/update/'+ id , course).pipe(map((res:any)=>res));;
+  return this.http.put(environment.url + '/course/update/'+ id , course).pipe(map((res:any)=>res));;
  }
 
  removeCourse(id){
@@ -123,13 +117,13 @@ rateCourse(rate){
       'Authorization' : localStorage.getItem('id_token')
   })
   };
-  return this.http.delete('http://localhost:3000/course/delete/' + id, httpOption ).pipe(map((res:any)=>res));;
+  return this.http.delete(environment.url + '/course/delete/' + id, httpOption ).pipe(map((res:any)=>res));;
  }
 
  uploadFile(selectedFile:File){
   const fd = new FormData();
   fd.append('file', selectedFile, selectedFile.name);
-  return this.http.post('http://localhost:3000/course/put/file',  fd).pipe(map((res:any)=>res));
+  return this.http.post(environment.url + '/course/put/file',  fd).pipe(map((res:any)=>res));
  }
 // course image
 // uploadCourseImg(selectedFile: File){

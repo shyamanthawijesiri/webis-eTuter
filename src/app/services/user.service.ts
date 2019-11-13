@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import {map} from 'rxjs/operators';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UserService {
   registerUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/register',user,{headers:headers}).pipe(map((res:any)=>res));
+    return this.http.post(environment.url + '/users/register',user,{headers:headers}).pipe(map((res:any)=>res));
   }
 // regiser admin
  registerAdmin(user) {
@@ -27,19 +28,19 @@ export class UserService {
       'Authorization' : localStorage.getItem('id_token')
   })
 }
-  return this.http.post('http://localhost:3000/users/registerAdmin',user,httpOption).pipe(map((res:any)=>res));
+  return this.http.post(environment.url + '/users/registerAdmin',user,httpOption).pipe(map((res:any)=>res));
 }
 
   //login user
   authenticateUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/authenticate',user,{headers:headers}).pipe(map((res:any)=>res));
+    return this.http.post(environment.url + '/users/authenticate',user,{headers:headers}).pipe(map((res:any)=>res));
   }
   authenticateAdmin(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/users/adminUserAuthenticate',user,{headers:headers}).pipe(map((res:any)=>res));
+    return this.http.post(environment.url + '/users/adminUserAuthenticate',user,{headers:headers}).pipe(map((res:any)=>res));
   }
 
 
@@ -91,7 +92,7 @@ export class UserService {
   uploadImage(selectedFile:File, id: string){
     const fd = new FormData();
     fd.append('image', selectedFile, selectedFile.name);
-    return this.http.post('http://localhost:3000/users/uploadUserImage/'+ id, fd).pipe(map((res:any)=>res));
+    return this.http.post(environment.url + '/users/uploadUserImage/'+ id, fd).pipe(map((res:any)=>res));
    }
 
   uploadImg = new EventEmitter<string>( );
@@ -99,39 +100,39 @@ export class UserService {
 
   //get user details
   getUser(id: string){
-    return this.http.get('http://localhost:3000/users/particularUser/'+id);
+    return this.http.get(environment.url + '/users/particularUser/'+id);
   }
 
   updataAccount(user,id: string){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.put('http://localhost:3000/users/update/'+id,user,{headers:headers}).pipe(map((res:any)=>res));
+    return this.http.put(environment.url + '/users/update/'+id,user,{headers:headers}).pipe(map((res:any)=>res));
 
   }
 
   deleteAccount(id: string,password){
-      return this.http.delete('http://localhost:3000/users/remove/'+id+'/'+password).pipe(map((res:any)=>res));;
+      return this.http.delete(environment.url + '/users/remove/'+id+'/'+password).pipe(map((res:any)=>res));;
   }
 
   changePassword(restpassword, id: string){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.put('http://localhost:3000/users/editUserProfile/' + id, restpassword,{headers:headers}).pipe(map((res:any)=>res));
+    return this.http.put(environment.url + '/users/editUserProfile/' + id, restpassword,{headers:headers}).pipe(map((res:any)=>res));
   }
 
   forgetPassword(email: string){
-    return this.http.get('http://localhost:3000/users/newPassword/' + email);
+    return this.http.get(environment.url + '/users/newPassword/' + email);
   }
   getRegisteredCourse(id: string){
-    return this.http.get('http://localhost:3000/users/' + id);
+    return this.http.get(environment.url + '/users/' + id);
   }
 
   getAllUser(){
-    return this.http.get('http://localhost:3000/users/allUserDetails');
+    return this.http.get(environment.url + '/users/allUserDetails');
   }
 
   getContentProvider(){
-    return this.http.get('http://localhost:3000/users/contentProviders')
+    return this.http.get(environment.url + '/users/contentProviders')
   }
 
   //delete content provider and student and admins
@@ -143,29 +144,29 @@ export class UserService {
         'Authorization' : localStorage.getItem('id_token')
     })
     };
-    return this.http.delete('http://localhost:3000/users/delete/' + id, httpOption).pipe(map((res: any) => res));
+    return this.http.delete(environment.url + '/users/delete/' + id, httpOption).pipe(map((res: any) => res));
   }
 
   getAllStudent(){
-    return this.http.get('http://localhost:3000/users/student');
+    return this.http.get(environment.url + '/users/student');
   }
 
   getAllAdmin(){
-    return this.http.get('http://localhost:3000/users/admins');
+    return this.http.get(environment.url + '/users/admins');
   }
   getAllSuperAdmin(){
-    return this.http.get('http://localhost:3000/users/superAdmins');
+    return this.http.get(environment.url + '/users/superAdmins');
   }
 
   // get conten providers courses
   getCPPendingCourse(id){
     console.log(id);
-    return this.http.get('http://localhost:3000/course/contentProvider/permissionNullCourse/'+ id);
+    return this.http.get(environment.url + '/course/contentProvider/permissionNullCourse/'+ id);
   }
   getCPRejectCourse(id){
-    return this.http.get('http://localhost:3000/course/contentProvider/permissionFalseCourse/'+ id);
+    return this.http.get(environment.url + '/course/contentProvider/permissionFalseCourse/'+ id);
   }
   getCPApprovedCourse(id){
-    return this.http.get('http://localhost:3000/course/contentProvider/permissionTrueCourse/'+ id);
+    return this.http.get(environment.url + '/course/contentProvider/permissionTrueCourse/'+ id);
   }
 }
