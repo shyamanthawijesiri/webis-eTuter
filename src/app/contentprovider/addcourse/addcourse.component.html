@@ -99,8 +99,13 @@
       </div>
       <div class="row">
         <div class="col-3">
-          <h6>Course Image</h6>
-          <input type="file" (change)="onFileSelected($event)">
+          <!-- <h6>Course Image</h6>
+          <input type="file" (change)="onFileSelected($event)"> -->
+          <label for="file-upload" class="custom-file-upload" class="btn btn-outline-primary">
+            Select Image
+        </label>
+        <input id="file-upload" type="file" (change)="onFileSelected($event)"/>
+        <p>{{imgName | shorten}}</p>
         </div>
       </div>
 
@@ -166,11 +171,26 @@
                                       <div class="form-group" style="margin-right:15px;">
                                           <input placeholder='Video Name' formControlName="videoName" class="form-control" >
                                         </div>
-                                           <input #f type="file" accept="video/*">
-                                           <button type="button" (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;" [disabled]="uploaded[i][m]">Upload</button>
+                                           <!-- <input #f type="file" accept="video/*"> -->
+                                            <div class="row">
+                                              <div class="col-8">
+                                                <label for="video-upload{{i}}{{m}}" class="custom-file-upload" class="btn btn-outline-primary btn-sm ">
+                                                 Select Video
+                                             </label>
+                                             <input id="video-upload{{i}}{{m}}" #f type="file" accept="video/*" (change)="onVideoSelected($event,i,m)"/>
+                                             <p>{{vid[i][m]}}</p>
+
+                                              </div>
+                                              <div class="col-4">
+
+                                                <button type="button" class="btn btn-outline-primary btn-sm " (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;" [disabled]="uploaded[i][m]">Upload</button>
+                                              </div>
+                                            </div>
+
+
                                            <!-- <button  (click)="onUploaded(i,m)">uploaded</button> -->
-                                           <div *ngIf="uploadedbar[i][m]" class="progress">
-                                              <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                                           <div *ngIf="uploadedbar[i][m]" class="progress" style="width: 95%;">
+                                              <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%" ></div>
                                             </div>
                                             <!-- <button type="button" (click)="onUploaded(i,m)">uploadede</button> -->
                                            <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
@@ -189,14 +209,25 @@
                             <div  style="margin-bottom: 90px;">
                               <div class="input-group">
 
-                                <div class="input-group-prepend">
-                                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                    aria-describedby="inputGroupFileAddon01">
-                                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
+
+
+                                  <div class="row">
+                                      <div class="col-8">
+                                        <label for="pdf-upload{{i}}{{j}}" class="custom-file-upload" class="btn btn-outline-primary btn-sm ">
+                                         Select Video
+                                     </label>
+                                     <input id="pdf-upload{{i}}{{j}}" #k type="file" accept="video/*" (change)="onPdfSelected($event,i,j)"/>
+                                     <p>{{pdf[i][j]}}</p>
+
+                                      </div>
+                                      <div class="col-4">
+
+                                        <button type="button" class="btn btn-outline-primary btn-sm " (click)="uploadPdf(k.files,i,j)" style="float:right; margin-right: 15px;" >Upload</button>
+                                      </div>
+                                    </div>
+
+
+
                                 <button mat-icon-button type="button" (click)="onDeleteFile(i,j)" color="warn"><mat-icon>delete</mat-icon></button>
                               </div>
 
@@ -221,6 +252,6 @@
               </div>
           </div>
       </form>
-
+<button (click)="onClick()"> CLICKME</button>
 </div>
 

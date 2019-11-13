@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { UserService } from 'src/app/services/user.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-addcourse',
@@ -15,6 +16,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddcourseComponent implements OnInit {
   selectedFile: File = null;
+  videoFile: File = null;
+  pdfFile: File = null;
+
   loadedCatergory: any;
   loadedSubcatergory: any;
   catergory = '';
@@ -27,7 +31,7 @@ export class AddcourseComponent implements OnInit {
   pass: any;
   loggedIn = false;
 
-
+ imgName = "";
 
   constructor(private fb: FormBuilder,
               private subCatergoryService: SubcatergoryService,
@@ -35,9 +39,10 @@ export class AddcourseComponent implements OnInit {
               private courseService: CourseService,
               private userService: UserService,
               private http: HttpClient,
-              private authService: AuthService)
+              private authService: AuthService,
+              public toastr: ToastrManager)
               { }
-udp = [[],[]]
+
 i=0;
   ngOnInit() {
 
@@ -50,7 +55,7 @@ i=0;
       // }
      // this.udp[2][0]=false
       console.log('2d array')
-      console.log(this.udp)
+      console.log(this.vid)
 
     this.authService.authState.subscribe((user) => {
       console.log(user);
@@ -164,6 +169,7 @@ i=0;
   }
   onDeleteVideo(i: number, k: number){
     (this.topic.at(i).get('videos') as FormArray).removeAt(k);
+    this.vid[i].splice(k,1)
     console.log(k)
     console.log(i)
   }
@@ -176,6 +182,14 @@ i=0;
   // }
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
+    this.imgName = this.selectedFile.name;
+
+  }
+  vid = [[],[]]
+  onVideoSelected(event, i,m){
+    this.vid.push([""])
+    this.videoFile = <File>event.target.files[0];
+    this.vid[i][m]=this.videoFile.name
 
   }
 
@@ -191,11 +205,18 @@ i=0;
         this.courseService.courseImgUpload(this.selectedFile, res.course['_id']).subscribe(res => {
           if(res.state){
             console.log('success couse update with image');
+            this.toastr.successToastr(res.msg, 'Success!');
+            setTimeout(()=>{
+              window.location.reload();
+         }, 2000);
+
           }else{
             console.log('error img')
+            this.toastr.errorToastr(res.msg, 'Success!');
           }
         });
       }else{
+        this.toastr.errorToastr(res.msg, 'Success!');
         console.log('flase');
 
       }
@@ -232,6 +253,7 @@ i=0;
       console.log(res['id']);
        this.uploaded[i][m]= true;
        this.uploadedbar[i][m]= false;
+       this.toastr.successToastr('Upload Successfully', 'Success!');
 
       (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
       if(i === 0 && m === 0){
@@ -245,6 +267,16 @@ i=0;
 
 
    // console.log(this.uploaded)
+
+  }
+ pdf = [[],[]]
+ onPdfSelected(event, i,m){
+    this.pdf.push([""])
+    this.pdfFile = <File>event.target.files[0];
+    this.pdf[i][m]=this.pdfFile.name
+
+  }
+  uploadPdf(){
 
   }
 
@@ -264,6 +296,8 @@ i=0;
   //   this.userService.uploadImage(this.selectedFile,this.pass.id);
   // }
 
-
+onClick(){
+ console.log( this.vid)
+}
 
 }
