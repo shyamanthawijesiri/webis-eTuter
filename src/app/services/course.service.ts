@@ -125,6 +125,12 @@ rateCourse(rate){
   };
   return this.http.delete('http://localhost:3000/course/delete/' + id, httpOption ).pipe(map((res:any)=>res));;
  }
+
+ uploadFile(selectedFile:File){
+  const fd = new FormData();
+  fd.append('file', selectedFile, selectedFile.name);
+  return this.http.post('http://localhost:3000/course/put/file',  fd).pipe(map((res:any)=>res));
+ }
 // course image
 // uploadCourseImg(selectedFile: File){
 //   const fd = new FormData();

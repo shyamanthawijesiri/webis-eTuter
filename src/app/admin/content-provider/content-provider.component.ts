@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-content-provider',
@@ -10,7 +11,8 @@ export class ContentProviderComponent implements OnInit {
   contentProvider: any;
   pass: any;
   token: any;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              public toastr: ToastrManager) { }
 
   ngOnInit() {
     console.log('hello')
@@ -27,8 +29,13 @@ export class ContentProviderComponent implements OnInit {
     this.userService.deleteCP(id).subscribe((res:any) =>{
       if(res.state){
         console.log('delete')
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
+
       }else{
+        this.toastr.errorToastr(res.msg, 'Oops!');
         console.log('error delete')
       }
 

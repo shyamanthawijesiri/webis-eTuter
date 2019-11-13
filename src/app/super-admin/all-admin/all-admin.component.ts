@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-all-admin',
@@ -9,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class AllAdminComponent implements OnInit {
   allAdmins: any;
   allSuperAdmins: any;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,public toastr: ToastrManager) { }
 
   ngOnInit() {
     this.userService.getAllSuperAdmin().subscribe(res =>{
@@ -27,8 +28,12 @@ export class AllAdminComponent implements OnInit {
     this.userService.deleteCP(id).subscribe((res:any) =>{
       if(res.state){
         console.log('delete')
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
       }else{
+        this.toastr.errorToastr(res.msg, 'Oops!');
         console.log('error delete')
       }
 

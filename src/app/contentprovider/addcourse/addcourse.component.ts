@@ -31,7 +31,9 @@ export class AddcourseComponent implements OnInit {
   pass: any;
   loggedIn = false;
 
- imgName = "";
+ imgName = '';
+  url: any;
+  imageView = false;
 
   constructor(private fb: FormBuilder,
               private subCatergoryService: SubcatergoryService,
@@ -43,17 +45,14 @@ export class AddcourseComponent implements OnInit {
               public toastr: ToastrManager)
               { }
 
-i=0;
+
   ngOnInit() {
 
     // google login
     this.uploaded.push([false])
     this.uploadedbar.push([false])
 
-      // for(this.i=0; this.i<5; this.i++ ){
-      //   this.udp.push([false])
-      // }
-     // this.udp[2][0]=false
+
       console.log('2d array')
       console.log(this.vid)
 
@@ -99,21 +98,6 @@ i=0;
 
     });
 
-    //   this.contentForm = this.fb.group({
-    //   name: ['', Validators.required],
-    //   description: ['',Validators.required],
-    //   catergory: ['',Validators.required],
-    //   subCatergory: ['',Validators.required],
-    //   type: ['',Validators.required],
-    //   skillLevel: ['',Validators.required],
-    //   duration: ['', Validators.required],
-    //   topics: this.fb.array([this.fb.group({
-    //     topic:['', Validators.required],
-    //     videos : this.fb.array([new FormControl('',Validators.required)]),
-    //     files: this.fb.array([new FormControl('', Validators.required)])
-    //   })]),
-
-    // });
 
 
 
@@ -155,8 +139,10 @@ i=0;
       files : new FormArray([new FormControl('',Validators.required)])
     })
     );
-   this.uploaded.push([false])
-   this.uploadedbar.push([false])
+    this.uploaded.push([false])
+    this.uploadedbar.push([false])
+    this.pdf.push([""]);
+    this.vid.push([""]);
     // ((this.topic.controls[0] as FormGroup).get('videos') as FormArray).push(new FormControl('HELLO',Validators.required));
 
   }
@@ -166,6 +152,7 @@ i=0;
   }
   onDeleteFile(i: number, k:number){
     (this.topic.at(i).get('files') as FormArray).removeAt(k);
+    this.pdf[i].splice(k,1)
   }
   onDeleteVideo(i: number, k: number){
     (this.topic.at(i).get('videos') as FormArray).removeAt(k);
@@ -174,13 +161,16 @@ i=0;
     console.log(i)
   }
 
-  // uploadVideo(i:number, k: number){
-  //   console.log(i);
-  //   (this.topic.at(i).get('videos') as FormArray).at(k).setValue(['d1234']);
-
-
-  // }
   onFileSelected(event){
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event) => {
+        this.url = event.target['result'];
+      }
+      this.imageView = true;
+
+    }
     this.selectedFile = <File>event.target.files[0];
     this.imgName = this.selectedFile.name;
 
@@ -212,11 +202,11 @@ i=0;
 
           }else{
             console.log('error img')
-            this.toastr.errorToastr(res.msg, 'Success!');
+            this.toastr.errorToastr(res.msg, 'Oops!');
           }
         });
       }else{
-        this.toastr.errorToastr(res.msg, 'Success!');
+        this.toastr.errorToastr(res.msg, 'Oops!');
         console.log('flase');
 
       }
@@ -251,9 +241,9 @@ i=0;
     this.http.post(url, formData, headers).subscribe(res => {
       console.log(res);
       console.log(res['id']);
-       this.uploaded[i][m]= true;
-       this.uploadedbar[i][m]= false;
-       this.toastr.successToastr('Upload Successfully', 'Success!');
+      this.uploaded[i][m]= true;
+      this.uploadedbar[i][m]= false;
+      this.toastr.successToastr('Video Upload Successfully', 'Success!');
 
       (this.topic.at(i).get('videos') as FormArray).at(m).get('video').setValue(res['id']);
       if(i === 0 && m === 0){
@@ -266,7 +256,7 @@ i=0;
 
 
 
-   // console.log(this.uploaded)
+
 
   }
  pdf = [[],[]]
@@ -276,25 +266,18 @@ i=0;
     this.pdf[i][m]=this.pdfFile.name
 
   }
-  uploadPdf(){
-
+  uploadPdf(i,m){
+      this.courseService.uploadFile(this.pdfFile).subscribe(res =>{
+          if(res.state){
+            this.toastr.successToastr(res.msg, 'Success!');
+            (this.topic.at(i).get('files') as FormArray).at(m).setValue(res['fileUrl'])
+          }else{
+            this.toastr.errorToastr(res.msg, 'Oops!');
+          }
+      })
   }
 
-  // onUploaded(i,m){
-  //   this.uploadedbar[i][m]= false;
-  //   this.uploaded[i][m]= true;
-  // }
-  // j=1;
-  // y=0;
-  // testClicked(){
-  //   console.log(this.j)
-  //   this.uploaded[this.j][this.y]=false;
-  //   this.j++;
-  // }
-  // onFileSelected(event){
-  //   this.selectedFile = <File>event.target.files[0];
-  //   this.userService.uploadImage(this.selectedFile,this.pass.id);
-  // }
+
 
 onClick(){
  console.log( this.vid)

@@ -33,6 +33,7 @@ export class AdminNavbarComponent implements OnInit {
  // ----------------------------------------------------
  // forget password
  newPassword: any;
+ msg: any;
 
    constructor(private activatedRoute: ActivatedRoute,
                private courseService: CourseService,
@@ -123,6 +124,7 @@ export class AdminNavbarComponent implements OnInit {
 
          } else {
            console.log('error login');
+           this.msg = data.msg
          }
        });
 

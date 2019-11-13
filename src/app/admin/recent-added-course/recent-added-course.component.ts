@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-recent-added-course',
@@ -13,7 +14,8 @@ export class RecentAddedCourseComponent implements OnInit {
    size: number;
 
    @Output() passSize = new EventEmitter<number>();
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService,
+              public toastr: ToastrManager) { }
 
   ngOnInit() {
     this.courseService.getNullPermissionCourse().subscribe(res =>{
@@ -34,6 +36,7 @@ export class RecentAddedCourseComponent implements OnInit {
     this.courseService.givePermission(permission, id).subscribe(res =>{
       if(res.state){
         console.log('course accept');
+        this.toastr.infoToastr(res.msg, 'Success!')
 
       }else{
         console.log('rejected');
@@ -47,7 +50,8 @@ export class RecentAddedCourseComponent implements OnInit {
     }
     this.courseService.givePermission(permission, id).subscribe(res =>{
       if(res.state){
-        console.log('course accept');
+        console.log('course reject');
+        this.toastr.infoToastr(res.msg, 'Success!')
       }else{
         console.log('rejected');
       }

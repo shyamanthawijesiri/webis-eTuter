@@ -3,6 +3,7 @@ import { NgFlashMessageService } from 'ng-flash-messages';
 
 import { CatergoryService } from 'src/app/services/catergory.service';
 import { SubcatergoryService } from 'src/app/services/subcatergory.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-addcatergory',
@@ -23,7 +24,8 @@ export class AddcatergoryComponent implements OnInit {
   whensub = [[],[]];
   constructor(private catergoryService: CatergoryService,
               private subCatergoryService: SubcatergoryService,
-              private ngFlashMessageService: NgFlashMessageService) { }
+              private ngFlashMessageService: NgFlashMessageService,
+              public toastr: ToastrManager) { }
 
   ngOnInit() {
     this.catergoryService.getCatergory().subscribe(res =>{
@@ -53,10 +55,10 @@ export class AddcatergoryComponent implements OnInit {
     this.catergoryService.addCatergory(catergory).subscribe(res => {
       if (res.state) {
         console.log('added successfully');
-        this.onFlash('Catergory Added Succefully', 'success');
+        this.toastr.successToastr(res.msg, 'Success!')
       } else {
         console.log('failed');
-        this.onFlash('Adding Failed', 'danger');
+        this.toastr.errorToastr(res.msg, 'Oops!');
       }
     });
     console.log(this.catergory);
@@ -71,11 +73,15 @@ export class AddcatergoryComponent implements OnInit {
       if (res.state) {
 
         console.log('successfully add subcatergory');
-        this.onFlash('Sub-Catergory Added Succefully', 'success');
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
+
       } else {
         console.log('failed');
-        this.onFlash('Adding Failed', 'danger');
+        this.toastr.errorToastr(res.msg, 'Oops!');
 
       }
     });
@@ -87,11 +93,14 @@ export class AddcatergoryComponent implements OnInit {
     this.subCatergoryService.deleteSubcatergory(subCatergory).subscribe((res: any) => {
       if (res.state) {
         console.log('delete Ok');
-        this.onFlash('Successfully Delete', 'success');
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
       } else {
         console.log('delete failed');
-        this.onFlash('Delete Failed', 'danger');
+        this.toastr.errorToastr(res.msg, 'Oops!');
+
       }
     });
 
@@ -101,11 +110,13 @@ export class AddcatergoryComponent implements OnInit {
     this.catergoryService.deleteCatergory(catergory).subscribe((res: any) => {
       if (res.state) {
         console.log('delete Ok');
-        this.onFlash('Successfully Delete', 'success');
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
       } else {
         console.log('delete failed');
-        this.onFlash('Delete Failed', 'danger');
+        this.toastr.errorToastr(res.msg, 'Oops!');
       }
     });
 
@@ -118,24 +129,19 @@ export class AddcatergoryComponent implements OnInit {
     this.catergoryService.updateCatergory(catergory, id).subscribe(res =>{
       if (res.state) {
         console.log('update ok');
-        this.onFlash('Successfully Update Catergory Name', 'success');
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000);
       } else {
         console.log('update failed');
-        this.onFlash('Update Failed', 'danger');
+        this.toastr.errorToastr(res.msg, 'Oops!');
       }
     });
 
   }
 
-  onFlash(messages: string, msgType: string){
-    this.ngFlashMessageService.showFlashMessage({
-      messages: [messages],
-      dismissible: true,
-      timeout: 1500,
-      type: msgType
-    });
-  }
+
 
 
 

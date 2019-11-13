@@ -3,12 +3,9 @@
         <div class="col-12">
           <div *ngIf="user">
             <img src="{{ user.photoUrl }}">
-            <div>
-              <h4>{{ user.name }}</h4>
-            </div>
           </div>
-          <button (click)="signInWithGoogle()" type="button">Sign in</button>
-          <button (click)="signOut()" type="button">Logout</button>
+          <button (click)="signInWithGoogle()" type="button" class="btn btn-outline-success btn-sm">Sign in</button>
+          <button (click)="signOut()" type="button" class="btn btn-outline-success btn-sm">Logout</button>
         </div>
       </div>
   <form style="margin-top: 100px;" [formGroup]="contentForm" (ngSubmit)="onSubmit()" >
@@ -101,17 +98,20 @@
         <div class="col-3">
           <!-- <h6>Course Image</h6>
           <input type="file" (change)="onFileSelected($event)"> -->
-          <label for="file-upload" class="custom-file-upload" class="btn btn-outline-primary">
+          <label for="file-upload" class="custom-file-upload" class="btn btn-outline-primary" style="margin-top:60px;">
             Select Image
         </label>
-        <input id="file-upload" type="file" (change)="onFileSelected($event)"/>
+        <input id="file-upload" type="file" (change)="onFileSelected($event)" accept="image/*"/>
         <p>{{imgName | shorten}}</p>
+        </div>
+        <div class="col-4">
+            <img [src]="url" height="150" width="150"  *ngIf="imageView" style="border: solid black 2px;">
         </div>
       </div>
 
-      <div class="row" style="margin-bottom: 50px;">
+      <div class="row" style="margin-bottom: 50px; margin-top: 10px;">
         <div class="col-12">
-          <h4 class="text-center">Course content</h4>
+          <h2 class="text-center" style="font-weight: bold;">Course content</h2>
         </div>
     </div>
 
@@ -142,100 +142,93 @@
                           <button mat-icon-button color="warn" (click)="onDelete(i)" ><mat-icon>delete</mat-icon></button>
 
                         </div>
-                        <div class="col-md-4"  class="form-group" formArrayName="videos" style="width: 33%"  >
+                        <div class="col-8" >
+                          <div class="row" >
+                              <div class="col-6"  class="form-group" formArrayName="videos"  style="width: 50%;" >
 
-                              <!-- <button  class="btn btn-outline-success" (click)="addVideos()" >Add Video</button> -->
-                              <div  *ngFor="let video of topic['controls'].videos['controls'];let m=index;" >
+                                  <!-- <button  class="btn btn-outline-success" (click)="addVideos()" >Add Video</button> -->
+                                  <div  *ngFor="let video of topic['controls'].videos['controls'];let m=index;" >
 
-                                <!-- <input placeholder='Sub Topic {{m+1}}'  class="form-control" [formControlName]="m" > -->
+                                    <!-- <input placeholder='Sub Topic {{m+1}}'  class="form-control" [formControlName]="m" > -->
 
-                                <div  style="margin-bottom: 10px;">
-
-                                  <!-- <div class="input-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroupFileAddon01" (click)="uploadVideo(i,m)" >Upload</span>
-                                    </div>
-                                    <div class="custom-file">
-                                      <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                        aria-describedby="inputGroupFileAddon01">
-                                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    <div  style="margin-bottom: 10px;">
 
 
-                                    </div>
-                                     <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
+                                      <div [formGroupName]="m">
+                                        <div style="margin-bottom: 20px;">
 
-                                  </div> -->
-                                  <div [formGroupName]="m">
-                                    <div style="margin-bottom: 20px;">
+                                          <div class="form-group" style="margin-right:15px;">
+                                              <input placeholder='Video Name' formControlName="videoName" class="form-control" >
+                                            </div>
+                                               <!-- <input #f type="file" accept="video/*"> -->
+                                                <div class="row">
+                                                  <div class="col-8">
+                                                    <label for="video-upload{{i}}{{m}}" class="custom-file-upload" class="btn btn-outline-primary btn-sm ">
+                                                     Select Video
+                                                 </label>
+                                                 <input id="video-upload{{i}}{{m}}" #f type="file" accept="video/*" (change)="onVideoSelected($event,i,m)"/>
+                                                 <p>{{vid[i][m]}}</p>
 
-                                      <div class="form-group" style="margin-right:15px;">
-                                          <input placeholder='Video Name' formControlName="videoName" class="form-control" >
+                                                  </div>
+                                                  <div class="col-4">
+
+                                                    <button type="button" class="btn btn-outline-primary btn-sm " (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;" [disabled]="uploaded[i][m]">Upload</button>
+                                                  </div>
+                                                  <div *ngIf="uploadedbar[i][m]" class="progress" style="width: 93%;margin-left:14px ;">
+                                                      <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%" ></div>
+                                                    </div>
+                                                </div>
+
+
+                                               <!-- <button  (click)="onUploaded(i,m)">uploaded</button> -->
+
+                                                <!-- <button type="button" (click)="onUploaded(i,m)">uploadede</button> -->
+                                               <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
+                                          </div>
+                                      </div>
+
+
+                                      </div>
+                                  </div>
+
+                                    <button mat-button  color="primary" type="button" (click)="addVideos(i)">   <mat-icon>add</mat-icon>Add Video</button>
+                          </div>
+
+                        <div class="col-6" class="form-group" formArrayName="files"   style="width: 50%;">
+                            <div  *ngFor="let file of topic['controls'].files['controls'];let j=index;" >
+                                <div  style="margin-bottom: 120px; margin-top:-5px;;">
+                                  <div class="input-group">
+
+
+
+                                      <div class="row">
+                                          <div class="col-8">
+                                            <label for="pdf-upload{{i}}{{j}}" class="custom-file-upload" class="btn btn-outline-primary btn-sm ">
+                                             Select File
+                                         </label>
+                                         <input id="pdf-upload{{i}}{{j}}" #k type="file" accept="video/*" (change)="onPdfSelected($event,i,j)"/>
+                                         <p>{{pdf[i][j]}}</p>
+
+                                          </div>
+                                          <div class="col-4">
+
+                                            <button type="button" class="btn btn-outline-primary btn-sm " (click)="uploadPdf(i,j)" style="float:right; margin-right: 15px;">Upload</button>
+                                          </div>
                                         </div>
-                                           <!-- <input #f type="file" accept="video/*"> -->
-                                            <div class="row">
-                                              <div class="col-8">
-                                                <label for="video-upload{{i}}{{m}}" class="custom-file-upload" class="btn btn-outline-primary btn-sm ">
-                                                 Select Video
-                                             </label>
-                                             <input id="video-upload{{i}}{{m}}" #f type="file" accept="video/*" (change)="onVideoSelected($event,i,m)"/>
-                                             <p>{{vid[i][m]}}</p>
-
-                                              </div>
-                                              <div class="col-4">
-
-                                                <button type="button" class="btn btn-outline-primary btn-sm " (click)="uploadVideo(f.files,i,m)" style="float:right; margin-right: 15px;" [disabled]="uploaded[i][m]">Upload</button>
-                                              </div>
-                                            </div>
 
 
-                                           <!-- <button  (click)="onUploaded(i,m)">uploaded</button> -->
-                                           <div *ngIf="uploadedbar[i][m]" class="progress" style="width: 95%;">
-                                              <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%" ></div>
-                                            </div>
-                                            <!-- <button type="button" (click)="onUploaded(i,m)">uploadede</button> -->
-                                           <button mat-icon-button type="button" color="warn" (click)="onDeleteVideo(i,m)"><mat-icon>delete</mat-icon></button>
-                                      </div>
+
+                                    <button mat-icon-button type="button" (click)="onDeleteFile(i,j)" color="warn"><mat-icon>delete</mat-icon></button>
                                   </div>
 
-
-                                  </div>
-                              </div>
-
-                                <button mat-button  color="primary" type="button" (click)="addVideos(i)">   <mat-icon>add</mat-icon>Add Video</button>
-                      </div>
-
-                    <div class="col-md-4" class="form-group" formArrayName="files"  style="width: 33%" >
-                        <div  *ngFor="let file of topic['controls'].files['controls'];let j=index;" >
-                            <div  style="margin-bottom: 90px;">
-                              <div class="input-group">
-
-
-
-                                  <div class="row">
-                                      <div class="col-8">
-                                        <label for="pdf-upload{{i}}{{j}}" class="custom-file-upload" class="btn btn-outline-primary btn-sm ">
-                                         Select Video
-                                     </label>
-                                     <input id="pdf-upload{{i}}{{j}}" #k type="file" accept="video/*" (change)="onPdfSelected($event,i,j)"/>
-                                     <p>{{pdf[i][j]}}</p>
-
-                                      </div>
-                                      <div class="col-4">
-
-                                        <button type="button" class="btn btn-outline-primary btn-sm " (click)="uploadPdf(k.files,i,j)" style="float:right; margin-right: 15px;" >Upload</button>
-                                      </div>
-                                    </div>
-
-
-
-                                <button mat-icon-button type="button" (click)="onDeleteFile(i,j)" color="warn"><mat-icon>delete</mat-icon></button>
-                              </div>
+                                </div>
 
                             </div>
+                            <button mat-button  color="primary" type="button" (click)="addFile(i)">   <mat-icon>add</mat-icon>Add File</button>
+                      </div>
+                    </div>
+                 </div>
 
-                        </div>
-                        <button mat-button  color="primary" type="button" (click)="addFile(i)">   <mat-icon>add</mat-icon>Add File</button>
-                  </div>
                 </div>
               </div>
 
@@ -252,6 +245,5 @@
               </div>
           </div>
       </form>
-<button (click)="onClick()"> CLICKME</button>
 </div>
 

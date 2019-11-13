@@ -1,8 +1,8 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light white fixed-top" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light blue-grey lighten-5 fixed-top" [containerInside]="false">
 
     <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/adminhome']" routerLinkActive="router-link-active" >Navbar</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/adminhome']" routerLinkActive="router-link-active" style="font-weight: bold;">E-Tuter</a></mdb-navbar-brand>
 
     <!-- Collapsible content -->
     <links>
@@ -132,7 +132,7 @@
                 </div>
 
         </div>
-
+        <p class="text-center" style="color: red;">{{msg}}</p>
             <div class="text-center mb-3">
               <button type="submit" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
                       mdbWavesEffect>Sign in
