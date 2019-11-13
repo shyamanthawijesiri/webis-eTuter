@@ -4,7 +4,7 @@ import { SubcatergoryService } from 'src/app/services/subcatergory.service';
 import { CatergoryService } from 'src/app/services/catergory.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
-
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-updatecourse',
@@ -31,7 +31,8 @@ export class UpdatecourseComponent implements OnInit {
               private subCatergoryService: SubcatergoryService,
               private catergoryService: CatergoryService,
               private activatedRoute: ActivatedRoute,
-              private courseService: CourseService) { }
+              private courseService: CourseService,
+              public toastr: ToastrManager) { }
 
   ngOnInit() {
     this.courseId = {
@@ -101,10 +102,16 @@ export class UpdatecourseComponent implements OnInit {
 
       this.courseService.updateCourse(course,this.courseId.id).subscribe(res => {
       if(res.state){
+
         console.log('updated')
-        window.location.reload();
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+     }, 1000);
       }else{
         console.log('update failed')
+        this.toastr.errorToastr(res.msg, 'Oops!')
+
       }
     })
 
