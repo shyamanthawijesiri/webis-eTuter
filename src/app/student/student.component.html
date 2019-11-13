@@ -1,4 +1,5 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="userRole === 'student'"></app-navbar>
+<app-admin-navbar *ngIf="userRole === 'admin' || userRole === 'superAdmin'"></app-admin-navbar>
 <div class="row" >
   <div class="col-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
@@ -9,10 +10,10 @@
 
     </div>
   </div>
-  <div class="col-10">
+  <div class="col-10" >
   <div class="tab-content" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" ><app-my-courses></app-my-courses></div>
-    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" [class.disabled]=disable><app-setting></app-setting></div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"  [class.disabled]="disable"><app-setting ></app-setting></div>
 
   </div>
 

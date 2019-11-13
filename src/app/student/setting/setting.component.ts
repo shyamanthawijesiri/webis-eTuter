@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 
@@ -31,9 +31,31 @@ export class SettingComponent implements OnInit {
   constructor(private userService: UserService,
               private fb: FormBuilder,
               private router: Router,
-              public toastr: ToastrManager) { }
+              public toastr: ToastrManager,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.pass = this.userService.loadToken();
+    if(this.pass.role === 'superAdmin' || this.pass.role === 'admin'){
+
+      this.userId = {
+        id: this.activatedRoute.snapshot.paramMap.get('id')
+      };
+      this.activatedRoute.params.subscribe(
+        (params: Params) => {
+          this.userId.id = params['id'];
+        }
+      );
+
+    }else{
+      this.userId = {
+        id: this.pass.id
+      }
+
+
+  }
+
+
 
 
     this.passwordrestForm = this.fb.group({
@@ -42,8 +64,8 @@ export class SettingComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
 
-    this.pass = this.userService.loadToken();
-    this.userService. getUser(this.pass.id).subscribe(response => {
+
+    this.userService. getUser(this.userId.id).subscribe(response => {
      this.userDetail = response;
       console.log('user details')
      console.log(this.userDetail);
@@ -64,7 +86,7 @@ export class SettingComponent implements OnInit {
       lname: this.lname
     }
 
-    this.userService.updataAccount(user,this.pass.id).subscribe(data =>{
+    this.userService.updataAccount(user,this.userId.id).subscribe(data =>{
       console.log('update');
       console.log(data.state);
       if(data.state){
@@ -85,7 +107,7 @@ export class SettingComponent implements OnInit {
   }
 
   uploadImage(){
-    this.userService.uploadImage(this.selectedFile,this.pass.id).subscribe(res=>{
+    this.userService.uploadImage(this.selectedFile,this.userId.id).subscribe(res=>{
       if(res.state){
         console.log('success')
         this.toastr.successToastr(res.msg, 'Success!')
@@ -104,7 +126,7 @@ export class SettingComponent implements OnInit {
     if(this.passwordrestForm.get('newPassword').value === this.passwordrestForm.get('confirmPassword').value){
       console.log('matching');
       this.passwordMatch = true;
-      this.userService.changePassword(this.passwordrestForm.value, this.pass.id).subscribe(res => {
+      this.userService.changePassword(this.passwordrestForm.value, this.userId.id).subscribe(res => {
         if(res.state){
           this.toastr.successToastr(res.msg, 'Success!')
           console.log(res.msg)
@@ -129,8 +151,8 @@ export class SettingComponent implements OnInit {
   onDelete(){
 
     //console.log(del)
-    this.userService.deleteAccount(this.pass.id,this.delPassword).subscribe((res:any) =>{
-      console.log(this.pass.id)
+    this.userService.deleteAccount(this.userId.id,this.delPassword).subscribe((res:any) =>{
+      console.log(this.userId.id)
       console.log(this.delPassword)
       if(res.state){
         console.log('successfully delete')

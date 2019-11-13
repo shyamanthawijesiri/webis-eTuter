@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-student',
@@ -7,16 +8,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
- userId:any
+
  disable: boolean = false;
-  constructor(private activatedRoute: ActivatedRoute) { }
+ userRole: any;
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userId = this.activatedRoute.snapshot.paramMap.get('id')
 
-    if(this.userId == null){
-      this.disable = false;
-    }else{
+    this.userRole = this.userService.loadToken().role
+    if(this.userRole === 'admin' || this.userRole === 'superAdmin'){
       this.disable = true;
     }
   }

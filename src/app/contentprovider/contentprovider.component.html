@@ -6,7 +6,8 @@
 
   </div>
 </div> -->
-<app-navbar></app-navbar>
+<app-navbar *ngIf="userRole === 'student'"></app-navbar>
+<app-admin-navbar *ngIf="userRole === 'admin' || userRole === 'superAdmin'"></app-admin-navbar>
 <div class="row" style="margin-top:60px;" >
     <div class="col-2">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
@@ -22,8 +23,8 @@
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><app-mycourse></app-mycourse></div>
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><app-my-courses></app-my-courses></div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><app-addcourse></app-addcourse></div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"><app-setting></app-setting></div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" [class.disabled]="disabel"><app-addcourse></app-addcourse></div>
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" [class.disabled]="disabel"><app-setting></app-setting></div>
     </div>
   </div>
 </div>

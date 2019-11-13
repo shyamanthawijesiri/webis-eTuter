@@ -16,6 +16,7 @@ import { ContentproviderGuard } from './guard/contentprovider.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { StudentGuard } from './guard/student.guard';
 import { SuperadminGuard } from './guard/superadmin.guard';
+import { AdminSuperadminGuard } from './guard/admin-superadmin.guard';
 
 
 const routes: Routes = [
@@ -51,10 +52,12 @@ const routes: Routes = [
   },
 
   {path: 'studentprofile/:id',component: StudentComponent,
-  canActivate: [SuperadminGuard] },
+  canActivate: [ AdminSuperadminGuard]
+  },
 
   {path: 'contentproviderprofile/:id',component: ContentproviderComponent,
-  canActivate: [SuperadminGuard]},
+  canActivate: [ AdminSuperadminGuard]
+  },
 
   {path: 'searchcourses',component:SearchCourseComponent  },
 

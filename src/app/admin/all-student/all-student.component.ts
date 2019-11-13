@@ -23,7 +23,7 @@ export class AllStudentComponent implements OnInit {
     this.userService.deleteCP(id).subscribe((res:any) =>{
       if(res.state){
         console.log('delete')
-        this.toastr.errorToastr(res.msg, 'Oops!');
+        this.toastr.successToastr(res.msg, 'Success!');
         setTimeout(()=>{
           window.location.reload();
         }, 1000);

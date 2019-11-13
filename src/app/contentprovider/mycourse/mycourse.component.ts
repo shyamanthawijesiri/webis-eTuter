@@ -13,11 +13,12 @@ export class MycourseComponent implements OnInit {
   pending: any;
   accepted: any;
   rejected: any;
-  admin:boolean;
+  superAdmin:boolean;
   userId: {id: string }
+  editDisable:boolean = false;
   constructor(private userService: UserService,
               private courseService: CourseService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit() {
     console.log('my course')
@@ -26,7 +27,7 @@ export class MycourseComponent implements OnInit {
 
 
     if(this.pass.role === 'superAdmin'){
-        this.admin = true;
+        this.superAdmin = true;
 
         this.userId = {
           id: this.activatedRoute.snapshot.paramMap.get('id')
@@ -36,11 +37,25 @@ export class MycourseComponent implements OnInit {
             this.userId.id = params['id'];
           }
         );
+
+      }else if(this.pass.role === 'admin'){
+        this.superAdmin = false;
+        this.userId = {
+          id: this.activatedRoute.snapshot.paramMap.get('id')
+        };
+        this.activatedRoute.params.subscribe(
+          (params: Params) => {
+            this.userId.id = params['id'];
+          }
+        );
+
+
       }else{
-        this.admin = false;
+        this.superAdmin = false;
         this.userId = {
           id: this.pass.id
         }
+
 
     }
 

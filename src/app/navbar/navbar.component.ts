@@ -150,7 +150,7 @@ filteredOptions: Observable<string[]>;
            });
            console.log('login success')
            this.router.navigateByUrl('/' + this.loginForm.get('role').value);
-           this.toastr.successToastr('login succeffuly.', 'Success!');
+
 
 
 

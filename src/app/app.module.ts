@@ -61,6 +61,7 @@ import { StudentGuard } from './guard/student.guard';
 import { AdminGuard } from './guard/admin.guard';
 import { ContentproviderGuard } from './guard/contentprovider.guard';
 import { SuperadminGuard } from './guard/superadmin.guard';
+import { AdminSuperadminGuard } from './guard/admin-superadmin.guard';
 
 
 export function tokenGetter() {
@@ -155,7 +156,8 @@ let config = new AuthServiceConfig([
     StudentGuard,
     AdminGuard,
     ContentproviderGuard,
-    SuperadminGuard
+    SuperadminGuard,
+    AdminSuperadminGuard
   ],
   bootstrap: [AppComponent]
 })
