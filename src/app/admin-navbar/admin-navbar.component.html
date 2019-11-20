@@ -41,11 +41,25 @@
 
       </div>
 
-        <div class="btn-group" *ngIf="userLoggedIn">
+        <!-- <div class="btn-group" *ngIf="userLoggedIn">
 
             <button *ngIf="userLoggedIn" mdbBtn type="button" color="danger" outline="true" class="waves-light"  (click)="onLogout()" mdbWavesEffect> Log Out</button>
-          </div>
+          </div> -->
+          <div class="btn-group" *ngIf="userLoggedIn">
 
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+
+                <li class="nav-item avatar dropdown" dropdown>
+                  <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    <img [src]="user.imageURL" alt="avatar inage" class="img-fluid rounded-circle z-depth-0" style="height: 40px; width: 40px;"></a>
+                  <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout()" routerLink="/adminhome">Logout</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/{{user.role}}">Profile</a>
+                  </div>
+                </li>
+              </ul>
+
+        </div>
 
 
     </links>

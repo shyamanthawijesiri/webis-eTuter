@@ -28,6 +28,10 @@ export class SettingComponent implements OnInit {
     // delete course
     delPassword: string;
 
+    // image
+    url: any;
+    imageView = false;
+
   constructor(private userService: UserService,
               private fb: FormBuilder,
               private router: Router,
@@ -76,6 +80,15 @@ export class SettingComponent implements OnInit {
   }
 
   onFileSelected(event){
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event) => {
+        this.url = event.target['result'];
+      }
+      this.imageView = true;
+
+    }
     this.selectedFile = <File>event.target.files[0];
   }
 
