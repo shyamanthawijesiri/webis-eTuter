@@ -1,31 +1,34 @@
 <app-navbar></app-navbar>
-<div class="row" style="margin-top: 60px;" >
+
+
+  <div class="row" style="margin-top:60px;">
+
     <div class="col-md-3" *ngFor="let course of serchCourse" >
+      <!-- Card -->
+       <mdb-card >
+           <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+             <!-- Card img -->
+             <img src="{{course.url}}" alt="Card image cap" >
+             <a [routerLink]="['/displaycourses','course-content',course._id]">
+               <div class="mask"></div>
+             </a>
 
+           </div>
+           <!--Card content-->
+           <mdb-card-body>
+             <!--Title-->
+             <mdb-card-title>
+               <h6>{{course.name | shorten}}</h6>
+             </mdb-card-title>
 
-        <mdb-card >
-            <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-              <!-- Card img -->
-              <img src="{{course.url}}" alt="Card image cap" >
-              <a [routerLink]="['/displaycourses','course-content',course._id]" routerLinkActive="router-link-active" >
-                <div class="mask"></div>
-              </a>
-            </div>
-            <!--Card content-->
-            <mdb-card-body>
-              <!--Title-->
-              <mdb-card-title>
-                <h4>{{course.name}}</h4>
-              </mdb-card-title>
+             <!--Text-->
+             <mdb-card-text>
+              By:{{course.author}}
+             </mdb-card-text>
+             <star-rating [value]="course.rating" checkedcolor="orange" uncheckedcolor="black" size="24px"readonly="true" ></star-rating>
 
-              <!--Text-->
-              <mdb-card-text>
-               {{course.description | shorten}}
-              </mdb-card-text>
-
-
-            </mdb-card-body>
-          </mdb-card>
-    </div>
-
+           </mdb-card-body>
+         </mdb-card>
+         <!-- Card -->
+     </div>
   </div>
