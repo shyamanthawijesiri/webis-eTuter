@@ -36,7 +36,7 @@ const routes: Routes = [
   canActivate: [ ContentproviderGuard]
   },
 
-  {path: 'admin', component: AdminComponent,
+  {path: 'admin/:id', component: AdminComponent,
   canActivate: [AdminGuard]
   },
 
@@ -47,7 +47,7 @@ const routes: Routes = [
    canActivate: [AuthGuard]
   },
 
-  {path: 'superAdmin', component: SuperAdminComponent,
+  {path: 'superAdmin/:id', component: SuperAdminComponent,
   canActivate: [SuperadminGuard]
   },
 

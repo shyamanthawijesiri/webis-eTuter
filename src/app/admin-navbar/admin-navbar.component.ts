@@ -117,7 +117,7 @@ export class AdminNavbarComponent implements OnInit {
              // }
 
             });
-            this.router.navigateByUrl('/'+this.loginForm.get('role').value);
+            this.router.navigateByUrl('/'+this.loginForm.get('role').value+'/'+this.pass.id);
 
 
 
