@@ -191,6 +191,7 @@ filteredOptions: Observable<string[]>;
       if(data.state){
 
        console.log('registered');
+       this.toastr.successToastr(data.msg, 'Success!');
        //this.router.navigateByUrl('/login');
       }else{
         console.log('failed register');

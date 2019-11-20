@@ -134,7 +134,7 @@
 
           <div class="text-center mb-3">
             <button type="submit" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
-                    mdbWavesEffect>Sign in
+                    mdbWavesEffect [disabled]="!loginForm.valid">Sign in
             </button>
           </div>
         </form>
@@ -309,7 +309,7 @@
           </div>
 
           <div class="text-center mb-3">
-            <button type="submit" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light"
+            <button type="submit" mdbBtn gradient="blue" block="true" rounded="true" class="z-depth-1a waves-light" [disabled]="!registerForm.valid"
                     mdbWavesEffect>Sign Up
             </button>
           </div>
