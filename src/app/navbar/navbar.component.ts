@@ -8,6 +8,7 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@ang
 import { CourseService } from '../services/course.service';
 import { UserService } from '../services/user.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { SubcatergoryService } from '../services/subcatergory.service';
 
 @Component({
   selector: 'app-navbar',
@@ -50,7 +51,8 @@ filteredOptions: Observable<string[]>;
               private userService: UserService,
               private router: Router,
               private fb: FormBuilder,
-              public toastr: ToastrManager) { }
+              public toastr: ToastrManager,
+              private subCatergory: SubcatergoryService) { }
 
   ngOnInit() {
  // login
@@ -77,8 +79,16 @@ filteredOptions: Observable<string[]>;
     this.courseService.getFullCourse().subscribe(response =>{
       this.fullCourse = response;
       console.log(this.fullCourse.name)
-      this.search();
+//this.search();
     });
+    this.subCatergory.getSubcatergory().subscribe((res:any) => {
+      console.log('subCatergourios')
+      res.forEach(element => {
+        this.unique.push(element.name)
+
+      });
+
+    })
 
     // search
 
@@ -230,15 +240,15 @@ filteredOptions: Observable<string[]>;
    this.router.navigateByUrl('/searchcourses')
  }
 
- search(){
-   this.fullCourse.forEach(element => {
-    this.searchArr.push(element.name);
+//  search(){
+//    this.fullCourse.forEach(element => {
+//     this.searchArr.push(element.name);
 
-   });
-   this.unique = [...new Set(this.searchArr)];
-   console.log(this.searchArr);
-   console.log(this.unique);
- }
+//    });
+//    this.unique = [...new Set(this.searchArr)];
+//    console.log(this.searchArr);
+//    console.log(this.unique);
+//  }
 
 
  private _filter(value: string): string[] {

@@ -1,5 +1,5 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light  blue-grey lighten-5 fixed-top" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark  mdb-color lighten-4 fixed-top" [containerInside]="false" >
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active" style="font-weight: bold;">E-Tuter</a></mdb-navbar-brand>
@@ -32,9 +32,9 @@
     <!-- Search form -->
       <div >
 
-        <form class="example-form" style='max-height: 50px;' >
+        <form class="example-form" style='max-height: 50px; color:white' >
             <mat-form-field class="example-full-width">
-              <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+              <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto" style="color: white;">
               <mat-autocomplete #auto="matAutocomplete" style="margin-top: 5px;" >
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="onSearch(option)">
                   {{option}}
