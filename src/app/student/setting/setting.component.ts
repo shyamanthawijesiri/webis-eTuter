@@ -107,7 +107,7 @@ export class SettingComponent implements OnInit {
         this.toastr.successToastr(data.msg, 'Success!')
         setTimeout(()=>{
           window.location.reload();
-     }, 2000);
+     }, 450);
 
       }else{
         this.toastr.errorToastr(data.msg, 'Oops!')
@@ -126,7 +126,7 @@ export class SettingComponent implements OnInit {
         this.toastr.successToastr(res.msg, 'Success!')
         setTimeout(()=>{
           window.location.reload();
-     }, 2000);
+     }, 450);
       }else{
         this.toastr.errorToastr(res.msg, 'Oops!')
       }

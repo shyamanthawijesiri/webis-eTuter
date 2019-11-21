@@ -31,7 +31,7 @@ export class AllAdminComponent implements OnInit {
         this.toastr.successToastr(res.msg, 'Success!');
         setTimeout(()=>{
           window.location.reload();
-        }, 1000);
+        }, 450);
       }else{
         this.toastr.errorToastr(res.msg, 'Oops!');
         console.log('error delete')

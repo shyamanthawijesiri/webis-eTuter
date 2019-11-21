@@ -198,7 +198,7 @@ export class AddcourseComponent implements OnInit {
             this.toastr.successToastr(res.msg, 'Success!');
             setTimeout(()=>{
               window.location.reload();
-         }, 1000);
+         }, 450);
 
           }else{
             console.log('error img')

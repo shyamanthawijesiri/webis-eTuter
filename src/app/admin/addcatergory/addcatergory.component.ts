@@ -77,7 +77,7 @@ export class AddcatergoryComponent implements OnInit {
 
         setTimeout(()=>{
           window.location.reload();
-        }, 1000);
+        }, 450);
 
       } else {
         console.log('failed');
@@ -113,7 +113,7 @@ export class AddcatergoryComponent implements OnInit {
         this.toastr.successToastr(res.msg, 'Success!');
         setTimeout(()=>{
           window.location.reload();
-        }, 1000);
+        }, 450);
       } else {
         console.log('delete failed');
         this.toastr.errorToastr(res.msg, 'Oops!');
@@ -132,7 +132,7 @@ export class AddcatergoryComponent implements OnInit {
         this.toastr.successToastr(res.msg, 'Success!');
         setTimeout(()=>{
           window.location.reload();
-        }, 1000);
+        }, 450);
       } else {
         console.log('update failed');
         this.toastr.errorToastr(res.msg, 'Oops!');

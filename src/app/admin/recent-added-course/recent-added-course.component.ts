@@ -37,6 +37,9 @@ export class RecentAddedCourseComponent implements OnInit {
       if(res.state){
         console.log('course accept');
         this.toastr.infoToastr(res.msg, 'Success!')
+        setTimeout(()=>{
+          window.location.reload();
+        }, 450);
 
       }else{
         console.log('rejected');
@@ -52,6 +55,9 @@ export class RecentAddedCourseComponent implements OnInit {
       if(res.state){
         console.log('course reject');
         this.toastr.infoToastr(res.msg, 'Success!')
+        setTimeout(()=>{
+          window.location.reload();
+        }, 450);
       }else{
         console.log('rejected');
       }

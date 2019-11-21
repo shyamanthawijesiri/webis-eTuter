@@ -44,6 +44,7 @@ unique = [];
 
 // error msg
 msg:string;
+smsg:string;
 filteredOptions: Observable<string[]>;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -195,7 +196,7 @@ filteredOptions: Observable<string[]>;
        //this.router.navigateByUrl('/login');
       }else{
         console.log('failed register');
-        this.msg = data.msg;
+        this.smsg = data.msg;
        //this.router.navigateByUrl('/register');
       }
   });

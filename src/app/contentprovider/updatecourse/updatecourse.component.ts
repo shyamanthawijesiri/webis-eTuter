@@ -107,7 +107,7 @@ export class UpdatecourseComponent implements OnInit {
         this.toastr.successToastr(res.msg, 'Success!');
         setTimeout(()=>{
           window.location.reload();
-     }, 1000);
+     }, 450);
       }else{
         console.log('update failed')
         this.toastr.errorToastr(res.msg, 'Oops!')

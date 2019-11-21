@@ -31,7 +31,7 @@ registerForm: FormGroup;
         console.log('success');
         setTimeout(()=>{
           window.location.reload();
-        }, 1000);
+        }, 450);
       }else{
         console.log('errror');
         this.toastr.errorToastr(res.msg, 'Oops!');

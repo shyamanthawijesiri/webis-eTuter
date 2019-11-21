@@ -26,7 +26,7 @@ export class AllStudentComponent implements OnInit {
         this.toastr.successToastr(res.msg, 'Success!');
         setTimeout(()=>{
           window.location.reload();
-        }, 1000);
+        }, 450);
       }else{
         console.log('error delete')
       }
