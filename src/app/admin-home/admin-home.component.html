@@ -2,13 +2,13 @@
 
   <mdb-carousel class="carousel slide carousel-fade" [type]="'carousel-thumbnails'" [animation]="'fade'">
       <mdb-carousel-item>
-        <img class="d-block w-100" src="https://media.gettyimages.com/photos/digital-human-brain-covered-with-networks-picture-id870184586?s=2048x2048" alt="First slide">
+        <img class="d-block w-100" src="https://cdn.pixabay.com/photo/2018/10/09/09/49/e-learning-3734521_1280.jpg" alt="First slide">
       </mdb-carousel-item>
       <mdb-carousel-item>
-        <img class="d-block w-100" src="https://media.gettyimages.com/photos/top-view-of-computer-programmer-sitting-at-the-desk-picture-id673947226?s=2048x2048" alt="Second slide">
+        <img class="d-block w-100" src="http://www.ancoax.com/img/web-development-services-bangalore.jpg" alt="Second slide">
       </mdb-carousel-item>
       <mdb-carousel-item>
-        <img class="d-block w-100" src="https://media.gettyimages.com/photos/laboratory-picture-id629942998?s=2048x2048" alt="Third slide">
+        <img class="d-block w-100" src="https://cdn.pixabay.com/photo/2017/09/05/10/19/business-2717063_1280.jpg" alt="Third slide">
       </mdb-carousel-item>
     </mdb-carousel>
 
@@ -74,16 +74,16 @@
 
         <!--Card image-->
         <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-          <img [src]="course.url" style="width: 100%;height:150px;border:none">
+          <img [src]="course.url" style="width: 100%;height:190px;border:none">
           <a [routerLink]="['/displaycourses','course-content',course._id]" >
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
         <!--/Card image-->
-        <mdb-card-body cascade="true">
+        <mdb-card-body cascade="true" style="min-height: 100px;">
           <!--Card content-->
           <!--Title-->
-          <h5 class="card-title">
+          <h5 class="card-title" style="min-height: 50px;">
             {{course.name | topRateShorten}}
           </h5>
           <star-rating [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
