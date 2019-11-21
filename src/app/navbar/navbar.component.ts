@@ -45,6 +45,7 @@ unique = [];
 // error msg
 msg:string;
 smsg:string;
+fmsg:string;
 filteredOptions: Observable<string[]>;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -226,9 +227,10 @@ filteredOptions: Observable<string[]>;
  }
 
  onForgetPassword() {
-  this.userService.forgetPassword(this.forgetPasswordForm.value.email).subscribe(res =>{
+  this.userService.forgetPassword(this.forgetPasswordForm.value.email).subscribe((res:any) =>{
     this.newPassword = res;
     console.log(res)
+    this.fmsg = res.msg;
   })
 
 

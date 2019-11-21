@@ -34,6 +34,7 @@ export class AdminNavbarComponent implements OnInit {
  // forget password
  newPassword: any;
  msg: any;
+ fmsg: string;
 
    constructor(private activatedRoute: ActivatedRoute,
                private courseService: CourseService,
@@ -180,9 +181,10 @@ export class AdminNavbarComponent implements OnInit {
   }
 
   onForgetPassword() {
-   this.userService.forgetPassword(this.forgetPasswordForm.value.email).subscribe(res =>{
+   this.userService.forgetPassword(this.forgetPasswordForm.value.email).subscribe((res:any) =>{
      this.newPassword = res;
      console.log(res)
+     this.fmsg = res.msg
    })
 
 
