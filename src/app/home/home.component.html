@@ -73,16 +73,16 @@
 
         <!--Card image-->
         <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-          <img [src]="course.url" style="width: 100%;height:150px;border:none">
+          <img [src]="course.url" style="width: 100%;height:190px;border:none">
           <a [routerLink]="['/displaycourses','course-content',course._id]" >
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
         <!--/Card image-->
-        <mdb-card-body cascade="true">
+        <mdb-card-body cascade="true" style="min-height: 100px;">
           <!--Card content-->
           <!--Title-->
-          <h5 class="card-title">
+          <h5 class="card-title" style="min-height: 50px;">
             {{course.name | topRateShorten}}
           </h5>
           <star-rating [value]="course.rate" checkedcolor="orange" uncheckedcolor="black" size="24px"    readonly="true" ></star-rating>
