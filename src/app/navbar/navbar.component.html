@@ -5,7 +5,7 @@
   <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active" style="font-weight: bold;">E-Tuter</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
-  <links>
+  <links style="max-height: 40px;">
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
@@ -32,9 +32,10 @@
     <!-- Search form -->
       <div >
 
-        <form class="example-form" style='max-height: 45px; color:white' >
+        <form class="example-form" style='max-height: 50px; color:white' >
             <mat-form-field class="example-full-width">
-              <input type="text" placeholder="Search" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto" style="color: white;">
+                <mat-label style="color: white;">Search</mat-label>
+              <input type="text"  aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto" style="color: white;" >
               <mat-autocomplete #auto="matAutocomplete" style="margin-top: 5px;" >
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="onSearch(option)">
                   {{option}}
