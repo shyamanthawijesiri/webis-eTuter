@@ -17,6 +17,7 @@ export class AddcatergoryComponent implements OnInit {
 
   catergory: string;
   changeCatergory: string;
+  changeSubCatergory: string;
   subCatergory: any;
   catsize: number;
   objectKeys = Object.keys;
@@ -24,7 +25,6 @@ export class AddcatergoryComponent implements OnInit {
   whensub = [[],[]];
   constructor(private catergoryService: CatergoryService,
               private subCatergoryService: SubcatergoryService,
-              private ngFlashMessageService: NgFlashMessageService,
               public toastr: ToastrManager) { }
 
   ngOnInit() {
@@ -127,6 +127,26 @@ export class AddcatergoryComponent implements OnInit {
       catergoryName: this.changeCatergory
     };
     this.catergoryService.updateCatergory(catergory, id).subscribe(res =>{
+      if (res.state) {
+        console.log('update ok');
+        this.toastr.successToastr(res.msg, 'Success!');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 450);
+      } else {
+        console.log('update failed');
+        this.toastr.errorToastr(res.msg, 'Oops!');
+      }
+    });
+
+  }
+
+  updateSubCatergory(id: string, CatName) {
+    const catergory = {
+      catergoryName: CatName,
+      subCatergoryName:this.changeSubCatergory
+    };
+    this.subCatergoryService.updateSubCatergory(catergory, id).subscribe(res =>{
       if (res.state) {
         console.log('update ok');
         this.toastr.successToastr(res.msg, 'Success!');

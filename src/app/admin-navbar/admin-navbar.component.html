@@ -54,7 +54,7 @@
                     <img [src]="user.imageURL" alt="avatar inage" class="img-fluid rounded-circle z-depth-0" style="height: 40px; width: 40px;"></a>
                   <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
                     <a class="dropdown-item waves-light" mdbWavesEffect (click)="onLogout()" routerLink="/adminhome">Logout</a>
-                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/{{user.role}}">Profile</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/{{user.role}}/{{user._id}}">Profile</a>
                   </div>
                 </li>
               </ul>

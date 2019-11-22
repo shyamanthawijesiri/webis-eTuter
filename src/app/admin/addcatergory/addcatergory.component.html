@@ -65,9 +65,9 @@
             </div> -->
 
             <div class="input-group mb-3" *ngIf="whensub[m][k]" style="margin-top: 20px;">
-                <input type="text" class="form-control" placeholder="Catergory Name"  [(ngModel)]="changeCatergory" >
+                <input type="text" class="form-control" placeholder="Sub-Catergory Name"  [(ngModel)]="changeSubCatergory" >
                 <div class="input-group-append" style="margin-right:5px;">
-                  <button mdbBtn color="primary"  size="md" class="m-0 px-5 " type="button"  mdbWavesEffect > Save</button>
+                  <button mdbBtn color="primary"  size="md" class="m-0 px-5 " type="button"  mdbWavesEffect (click)="updateSubCatergory(subcatergory._id,subcatergory.catergoryName)" > Save</button>
                 </div>
               </div>
             <hr style="margin-top: 40px;">

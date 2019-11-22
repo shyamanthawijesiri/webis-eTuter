@@ -24,5 +24,8 @@ export class SubcatergoryService {
  deleteSubcatergory(subCatergory){
   return this.http.delete(environment.url + '/subCatergory/delete/'+subCatergory);
  }
+ updateSubCatergory(subCatergory,id: string){
+  return this.http.put(environment.url + '/subCatergory/updateSubCatergory/' + id, subCatergory).pipe(map((res:any)=>res));
+ }
 
 }
