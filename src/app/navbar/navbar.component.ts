@@ -67,8 +67,8 @@ filteredOptions: Observable<string[]>;
     this.registerForm = this.fb.group({
       fname: ['',Validators.required],
       lname: ['',Validators.required],
-      email: ['',Validators.email],
-      password: ['',Validators.required],
+      email: ['',Validators.compose([Validators.required, Validators.email])],
+      password: ['',Validators.compose([Validators.required, Validators.minLength(6)])],
       role: ['',Validators.required]
     });
 

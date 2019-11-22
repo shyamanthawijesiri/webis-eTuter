@@ -16,9 +16,9 @@ registerForm: FormGroup;
     this.registerForm = this.fb.group({
       fname: ['',Validators.required],
       lname: ['',Validators.required],
-      email: ['',Validators.email],
-      contact:['',Validators.required],
-      password: ['',Validators.required],
+      email: ['',Validators.compose([Validators.required, Validators.email])],
+      contact:['',Validators.compose([Validators.required, Validators.minLength(10)])],
+      password: ['',Validators.compose([Validators.required, Validators.minLength(6)])],
       role: ['',Validators.required]
     });
   }
